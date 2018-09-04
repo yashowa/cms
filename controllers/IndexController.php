@@ -1,17 +1,22 @@
 <?php
 
-class IndexController
+class IndexController extends BaseController
 {
 
   public function ___construct(){
-    var_dump($_SESSION);
-    echo 'lol';
-  }
-  public function index(){
-    $this->render('home.php');
+
+  //  $this->setPageName('')
+
   }
 
-  public function render($tpl){
-    include(ROOT.'//views//'.$tpl);
+  public function index(){
+
+    $params=array(
+      'page_name'=>"Accueil",
+    );
+
+    $this->render('home.php',$params);
   }
+
+
 }
