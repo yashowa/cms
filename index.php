@@ -6,13 +6,22 @@ define('PATHCONTROLLER',dirname(__FILE__).'/controllers/');
 require(dirname(__FILE__).'//Core//Connection.php');
 require(dirname(__FILE__).'//Core//Router.php');
 require(dirname(__FILE__).'/params//config.php');
+include_once PATHCONTROLLER.'BaseController.php';
 
 $uri = $_SERVER['REQUEST_URI'];
-var_dump($uri);
+
 spl_autoload_register(function ($class_name) {
-  //echo $class_name;
-  echo PATHCONTROLLER.$class_name . '.php';
-    include PATHCONTROLLER.$class_name . '.php';
+  echo PATHCONTROLLER.$class_name . '.php'."<br>";
+  try{
+    if (!file_exists(PATHCONTROLLER.$class_name . '.php')){
+      BaseController::pageNotFound();
+      exit;
+    }
+    include_once PATHCONTROLLER.$class_name . '.php';
+  } catch (Exception $e) {
+      echo $e->getMessage(). "\n"."class inexistante";
+  }
+
 });
 
 /*get data base elem*/
@@ -26,19 +35,26 @@ $lol="rr";
 if($uri!="/"){
 
   $uriParsed = explode('/',$uri);
-  var_dump($uriParsed);
   $class= ucfirst($uriParsed[1]);
   $controllerName= ucfirst($uriParsed[1]).'Controller';
-  var_dump($controllerName);
+
 
   $controllerFile= $controllerName.'.php';
 
+
+////debugage:
+/*
+  var_dump($uri);
+
+    var_dump($controllerName);
   var_dump(class_exists('IndexController', false));
-
   var_dump(class_exists('PageController', false));
-
   var_dump(class_exists($controllerName, false));
   var_dump($controllerFile);
+*/
+
+
+  $app = new $controllerName() or die("error 404");
 
 /*  if (!class_exists($controllerName, false)) {
     trigger_error("Impossible de charger la classe : $controllerName", E_USER_WARNING) ;
@@ -51,15 +67,9 @@ if($uri!="/"){
     $app = new $controllerName() or die("error 404");
   }
 */
-$v=4;
-/*try {
-    $app = new $controllerName();
-} catch (Exception $e) {
-    echo $e->getMessage(), "\n";
-}*/
+
 
 try {
-    $v = 1;
 } catch (Exception $e) {
     echo $e->getMessage(), "\n";
 }

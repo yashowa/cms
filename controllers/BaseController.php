@@ -52,4 +52,8 @@ setter page name from controller
   public function getPageLink($page){
     echo'lol';
   }
+
+  static function pageNotFound($error=null){
+      include(ROOT.'/views/404.php');
+  }
 }
