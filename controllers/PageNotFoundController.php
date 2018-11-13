@@ -5,7 +5,7 @@ class PageNotFoundController extends BaseController
 
   public function index(){
     $params=array(
-      'page_name'=>"Page",
+      'page_name'=>"Page non trouvée",
       'routes'=>$this->getRoutes(),
       'content'=>'Lorem ipsum'
     );

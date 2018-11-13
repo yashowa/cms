@@ -6,7 +6,7 @@ define('PATHCONTROLLER',dirname(__FILE__).'/controllers/');
 require(dirname(__FILE__).'//Core//Connection.php');
 require(dirname(__FILE__).'//Core//Router.php');
 require(dirname(__FILE__).'/params//config.php');
-include_once PATHCONTROLLER.'BaseController.php';
+//include_once PATHCONTROLLER.'BaseController.php';
 
 $uri = $_SERVER['REQUEST_URI'];
 
@@ -14,7 +14,8 @@ spl_autoload_register(function ($class_name) {
   echo PATHCONTROLLER.$class_name . '.php'."<br>";
   try{
     if (!file_exists(PATHCONTROLLER.$class_name . '.php')){
-      BaseController::pageNotFound();
+      $page =new PageNotFoundController();
+      $page->index();
       exit;
     }
     include_once PATHCONTROLLER.$class_name . '.php';
