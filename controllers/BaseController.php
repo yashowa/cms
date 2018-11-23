@@ -6,6 +6,7 @@ class BaseController
 
   private $_page_name;
   public $_connexion;
+  public $_querystring;
 
 /*
 *get $routes
@@ -27,10 +28,11 @@ params : connexion PDO object to local //table
   }
 
   /*
-  method render get the template file to view the page
+  method render get the template file to view the pagen
   * params: string template name and params
   */
   public function render($tpl, $params=null){
+    //echo 'render du basecontroller incluera'.ROOT."/views/".$tpl;
     include(ROOT.'//views//'.$tpl);
   }
 

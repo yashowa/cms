@@ -9,6 +9,7 @@ class IndexController extends BaseController
       'routes'=>$this->getRoutes()
     );
 
+//var_dump($params);
     $this->render('home.php',$params);
   }
 
