@@ -1,4 +1,6 @@
 
-<?php include('global/header.php');?>
-<h1>Home</h1>
-<?php include('global/footer.php');?>
+<?php include_once('global/header.php');?>
+<?//php var_dump($params);?>
+<h1><?php echo($params['page_name']);?></h1>
+
+<?php include_once('global/footer.php');?>
