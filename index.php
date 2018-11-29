@@ -44,7 +44,6 @@ if($uri!="/"){
     if($count>2){
     $action = $uriParsed[2];
 }
-
 $controllerName= ucfirst($uriParsed[1]).'Controller';
 $controllerFile = $controllerName.'.php';
 

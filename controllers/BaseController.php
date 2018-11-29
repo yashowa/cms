@@ -6,7 +6,7 @@ class BaseController
 
   private $_page_name;
   public $_connexion;
-  public $_querystring;
+  public static $_querystring;
 
 /*
 *get $routes
@@ -14,12 +14,13 @@ class BaseController
 params : connexion PDO object to local //table
 */
   public function getRoutes(){
+        self::$querystring=$_SERVER['REQUEST_URI'];
       $this->_connexion = Connection::getInstance();
       return  Router::getRoutes($this->_connexion);
   }
 
   public function ___construct(){
-      $this->_connexion = Connection::getInstance();
+    $this->_connexion = Connection::getInstance();
   }
 
 
