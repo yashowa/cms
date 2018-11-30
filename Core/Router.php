@@ -27,5 +27,8 @@ Class Router
     return $resultats;
   }
 
+  public static function getCurrentRoute(){
+    return $_SERVER['REQUEST_URI'];
+  }
 }
 ?>
