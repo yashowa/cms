@@ -1,57 +1,106 @@
--- MySQL dump 10.16  Distrib 10.2.19-MariaDB, for debian-linux-gnu (x86_64)
+-- phpMyAdmin SQL Dump
+-- version 4.6.4
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost    Database: games
--- ------------------------------------------------------
--- Server version	10.2.19-MariaDB-1:10.2.19+maria~bionic
+-- Client :  127.0.0.1
+-- Généré le :  Mer 01 Août 2018 à 00:49
+-- Version du serveur :  5.7.14
+-- Version de PHP :  5.6.25
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Table structure for table `deb_page`
+-- Base de données :  `blog`
 --
 
-DROP TABLE IF EXISTS `deb_page`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `deb_page` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` text NOT NULL,
-  `alias` varchar(256) NOT NULL,
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `articles`
+--
+
+CREATE TABLE `articles` (
+  `id` int(11) NOT NULL,
+  `title` text NOT NULL,
   `content` longtext NOT NULL,
-  `published` tinyint(1) NOT NULL,
   `category` int(11) NOT NULL,
-  `date_creation` datetime NOT NULL,
-  `last_update` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `author` int(11) NOT NULL,
+  `date_creation` timestamp NOT NULL,
+  `last_update` timestamp NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `deb_page`
+-- Structure de la table `roles`
 --
 
-LOCK TABLES `deb_page` WRITE;
-/*!40000 ALTER TABLE `deb_page` DISABLE KEYS */;
-INSERT INTO `deb_page` VALUES (1,'mentions légales','mentions','<p>Lorem ipsum</p>',1,2,'2018-09-24 15:03:00','2018-09-24 15:03:00'),(2,'test','aliastest','test',0,1,'0000-00-00 00:00:00','0000-00-00 00:00:00');
-/*!40000 ALTER TABLE `deb_page` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL,
+  `name` int(11) NOT NULL,
+  `create_article` int(11) NOT NULL,
+  `read_article` int(11) NOT NULL,
+  `update_article` int(11) NOT NULL,
+  `delete_article` int(11) NOT NULL,
+  `create_user` int(11) NOT NULL,
+  `read_user` int(11) NOT NULL,
+  `update_user` int(11) NOT NULL,
+  `delete_user` int(11) NOT NULL,
+  `update_params` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `mail` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `role` int(11) DEFAULT NULL,
+  `last_connexion` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Index pour les tables exportées
+--
+
+--
+-- Index pour la table `articles`
+--
+ALTER TABLE `articles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT pour les tables exportées
+--
+
+--
+-- AUTO_INCREMENT pour la table `articles`
+--
+ALTER TABLE `articles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2018-11-29 16:40:14
