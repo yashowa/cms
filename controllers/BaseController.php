@@ -15,11 +15,10 @@ class BaseController
 params : connexion PDO object to local //table
 */
   public function getRoutes(){
-      return  Router::getRoutes($this->_connexion);
+      return Router::getRoutes($this->_connexion);
   }
 
   public function __construct(){
-    $this->action='lol';
     $this->_querystring=$_SERVER['REQUEST_URI'];
     $this->_connexion = Connection::getInstance();
   }
@@ -35,7 +34,7 @@ params : connexion PDO object to local //table
   */
   public function render($tpl, $params=null){
     //echo 'render du basecontroller incluera'.ROOT."/views/".$tpl;
-    include(ROOT.'//views//'.$tpl);
+    include('views/'.$tpl);
   }
 
 /*

@@ -7,8 +7,7 @@
   <link rel="stylesheet" href="/assets/css/admin/style.css">
 </head>
 <body>
-<nav id="menu-navigation-admin">
-  <ul>
+<nav id="menu-navigation-admin">  <ul>
     <?php foreach($params['routes'] as $route): ?>
         <li><a href="/page/<?php echo $route->alias; ?>"><?php echo $route->name; ?></a></li>
     <?php endforeach; ?>
