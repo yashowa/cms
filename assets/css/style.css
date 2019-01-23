@@ -1,3 +1,17 @@
 body{
   font-family: arial;
 }
+
+/*button*/
+.btn-action{
+  display:block;
+  background: green;
+  border:none;
+}
+
+
+/* form elem*/
+.form-input{
+  display:block;
+  padding: 7px 5px !important;
+}
