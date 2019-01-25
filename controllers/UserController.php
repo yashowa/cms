@@ -16,6 +16,12 @@ class UserController extends BaseController
  return false;
   }
   public static function isAuth(){
+
+var_dump($_POST);
+      $result =Connection::getInstance()->query('SELECT * FROM deb_users' );
+      $result->setFetchMode(PDO::FETCH_OBJ);
+
+    //return true;
     return false;
   }
 }
