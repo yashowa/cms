@@ -5,7 +5,7 @@
 
 <form method="post" id="login-form">
   <div class='form-input'>
-    <input name='login' type='text'  placeholder='Login / E mail'>
+    <input name='email' type='text'  placeholder='Login / E mail'>
   </div>
   <div class='form-input'>
     <input name='password'  type='password' placeholder='Mot de passe'>
