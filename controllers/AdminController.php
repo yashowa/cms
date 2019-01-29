@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 
 
 
@@ -59,28 +59,32 @@ class AdminController extends BaseController
   public function login(){
   //  die('loooooooooooooooo');
 
+if (isset($_POST['email']) && isset( $_POST['password'])){
     $email = $_POST['email'];
     $passwd=$_POST['password'];
+  }
 var_dump($_POST);
 if(isset($email)&& $email!='' && isset($passwd) & $passwd!=''){
+      $sql="SELECT * FROM deb_users WHERE email='$email' AND passwd='$passwd'";
+      echo $sql;
+      $co = Connection::getInstance()->query($sql);
+      $co->setFetchMode(PDO::FETCH_OBJ);
+      $result=$co->fetch();
 
+      if($result){
+          //if(count($result)>0){}
+          $_SESSION['user'] = $result;
+          var_dump($result);
+          exit;
+      }else{
+        trigger_error('Conexion failed');
+      }
 }else{
 
-               $this->render('admin/form-login.php');
+     $this->render('admin/form-login.php');
 }
+exit;
 
-$sql="SELECT * FROM deb_users WHERE email='$email' AND passwd='$passwd'";
-
-    $co = Connection::getInstance()->query($sql);
-    $co->setFetchMode(PDO::FETCH_OBJ);
-    $result=$co->fetch();
-    if(count($result)>0){
-        $_SESSION['user'] = $result;
-        var_dump($result);
-        exit;
-    }else{
-      trigger_error('Conexion failed');
-    }
   }
 
   public function logout(){
