@@ -3,4 +3,5 @@
   define("DB_NAME",'games');
   define("DB_USER",'root');
   define("DB_PWD",'albalogic');
+  define("KEY_PWD",'albalogic');
 ?>

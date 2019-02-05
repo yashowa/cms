@@ -17,7 +17,7 @@ class UserController extends BaseController
   }
   public static function isAuth(){
 
-var_dump($_POST);
+    var_dump($_POST);
       $result =Connection::getInstance()->query('SELECT * FROM deb_users' );
       $result->setFetchMode(PDO::FETCH_OBJ);
 
