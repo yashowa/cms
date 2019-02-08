@@ -26,6 +26,18 @@ Class Router
     }
     return $resultats;
   }
+  public static function getAdminRoutes($co){
+    //return array('test'=>"pouet");
+    $routes = $co->query("SELECT * FROM `deb_adminpage`");
+    $routes->setFetchMode(PDO::FETCH_OBJ);
+    $resultats=array();
+    while( $resultat = $routes->fetch() )
+    {
+        $resultats[]=$resultat;
+    }
+    return $resultats;
+  }
+
 
   public static function getCurrentRoute(){
     return $_SERVER['REQUEST_URI'];
