@@ -4,8 +4,15 @@
 <h1><?php echo($params['page_name']);?></h1>
 
 <form method="post" id="login-form">
+<?php if(isset($params['error'])):?>
+    <p class='msg-error'>
+      <?php foreach ($params['error'] as $error): ?>
+        <?php echo $error;?></p>
+      <?php endforeach?>
+<?php endif?>
+
   <div class='form-input'>
-    <input name='email' type='text'  placeholder='Login / E mail'>
+      <input name='email' type='text'  placeholder='Login / E mail'>
   </div>
   <div class='form-input'>
     <input name='password'  type='password' placeholder='Mot de passe'>

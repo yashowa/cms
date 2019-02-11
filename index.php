@@ -50,11 +50,12 @@ $controllerFile = $controllerName.'.php';
 //echo $action;
 //echo'lllllllllllllllllll';
 
-  //var_dump($controllerName);
+  var_dump($controllerName);
+
 
   $app = new $controllerName() ;//or die("error 404");
   $app->index();
-
+exit;
   $methods= get_class_methods($app);
   //$app->index();
 //var_dump($methods);
