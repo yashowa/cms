@@ -17,6 +17,9 @@ params : connexion PDO object to local //table
   public function getRoutes(){
       return Router::getRoutes($this->_connexion);
   }
+  public function  getAdminRoutes(){
+          return Router::getAdminRoutes($this->_connexion);
+  }
 
   public function __construct(){
     $this->_querystring=$_SERVER['REQUEST_URI'];

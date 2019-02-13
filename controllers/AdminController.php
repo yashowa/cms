@@ -8,8 +8,6 @@ class AdminController extends BaseController
   public $method;
   public function index(){
     //verification de la _connexion
-
-
     //echo $this->_querystring;
 
       $queryStringArray = explode('/',$this->_querystring);
@@ -18,112 +16,39 @@ class AdminController extends BaseController
 
       if(!AuthController::isLogged() && $queryStringArray[2]!='login'){
         header('Location:/admin/login');
-      }
+      }else{
+          // $this->render('admin/form-login.php',$params);
+          // si on est connecté avec une action definie
+        if($queryStringArray[2]!="" &$queryStringArray[2]!='dashboard'){
+            $action=$queryStringArray[2];
+            $cl =ucfirst($action).'Controller';
+            echo "la methode $action renvoie \n";
+            var_dump(method_exists($this,$action));
+            echo "nom du controller \n";
+            echo '<p>kauy</p>';
+            echo($cl);
+          //  var_dump(interface_exists('Admin'.ucfirst($action).'Controller',true));
+          //  exit;
+          // sinon on est redirigé vers e tableau de bord
+        }else{
+              $action='dashboard';
+                      //header('Location:/admin/dashboard');
+        }
 
-
-      if($queryStringArray[2]!=""){
-        $action=$queryStringArray[2];
-
-
-$cl =ucfirst($action).'Controller';
-var_dump(method_exists($this,$action));
-echo($cl);
-var_dump(interface_exists('Admin'.ucfirst($action).'Controller',true));
-echo 'li';
-var_dump(($action=='dashboard'));
-echo'la';
-exit;
         if(method_exists($this,$action)){
           $this->$action();
-          die ('merd');
-        }elseif(interface_exists('Admin'.ucfirst($action).'Controller')) {
-          die("exist");
+        }elseif($action!='dashboard'){
           $className = 'Admin'.ucfirst($action).'Controller';
           $class = new $className();
-        }elseif($action=='dashboard') {
-          die('dash');
+          $class->index();
+        }else{
+
           $className = ucfirst($action).'Controller';
-          die($className);
           $class = new $className();
-
-        }else{
-          die('other');
-            header('Location:/pageNotFound/');
+          $class->index();
         }
-      }else{
-        die('lol');
-      }
-      /*exit;
-      if(count($queryStringArray)>2 && $queryStringArray[2]!=""){
-        $action = $queryStringArray[2];
-        $method = $action;
-        echo "methode: ". $action;
-        if(method_exists($this,$action)){
-          echo 'methode oki';
-          $this->$action();//){
-            //die('ok');
-        //  }else{
-
-          //};
-        }else{
-            die('methoode exist pas ');
-        }
-      }
-*/
-      // si il ya une methode derrier
-    /*  if($queryStringArray[1]=='admin'){
-        if (AuthController::isLogged()){
-          // on redirige soit vers la methode soit vers le controlleur associé
-
-          $params=array(
-            'page_name'=>"Espace d'administration",
-            'routes'=>$this->getAdminRoutes()
-          );
-              $this->render('admin/home.php',$params);
-        }
-        header('Location:/admin/');
-      }
-
-    if (AuthController::isLogged()){
-      if($queryStringArray[2]=='admin'){
-        header('Location:/admin/');
-      }
-          //exit;
-    }else{
-
-      //exit;
-  var_dump($queryStringArray);
-      if(count($queryStringArray)>2 && $queryStringArray[2]!=""){
-        $action = $queryStringArray[2];
-        $method = $action;
-        echo "methode: ". $action;
-        if(method_exists($this,$action)){
-          echo 'methode oki';
-          $this->$action();//){
-            //die('ok');
-        //  }else{
-
-          //};
-        }else{
-            die('methoode exist pas ');
-        }
-      }else{
-        header('Location:/admin/login');
-      }
-*/
-
-/*
-      $params=array(
-        'page_name'=>"Espace d'administration",
-        'routes'=>$this->getAdminRoutes()
-      );
-          $this->render('admin/home.php',$params);
-*/
-//var_dump($params);
-
-//header('Location:/admin/login');
-      //  return $this->render('admin/form-login.php');
-  }
+    }
+}
 
   public function login(){
 
