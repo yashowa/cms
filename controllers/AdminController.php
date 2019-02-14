@@ -25,7 +25,6 @@ class AdminController extends BaseController
             echo "la methode $action renvoie \n";
             var_dump(method_exists($this,$action));
             echo "nom du controller \n";
-            echo '<p>kauy</p>';
             echo($cl);
           //  var_dump(interface_exists('Admin'.ucfirst($action).'Controller',true));
           //  exit;
@@ -57,6 +56,9 @@ class AdminController extends BaseController
         $passwd=$_POST['password'];
       }
 
+      $params=array(
+        'page_name'=>"Deb CMS ",
+      );
     var_dump($_POST);
     if(isset($email)&& $email!='' && isset($passwd) & $passwd!=''){
           $sql="SELECT * FROM deb_users WHERE email='$email' AND passwd='".md5($this->encrypt($passwd))."'";

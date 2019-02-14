@@ -1,16 +1,22 @@
 <?php
 
-class DashboardController extends BaseController
-{
+
+
+class AdminUserController extends BaseController{
+
   public function index(){
 
+
     $alias =explode('/',$this->_querystring)[2];
+    var_dump($alias);
+    exit;
     $pageDatas = $this->getPageInfosFromAlias($alias);
     $params=array(
-      'page_name'=>"Espace d'administration",
-      'routes'=>$this->getAdminRoutes()
+      'page_name'=>"$pageDatas->name",
+      'routes'=>$this->getAdminRoutes(),
+      'content'=>$pageDatas->content
     );
-      $this->render('admin/home.php',$params);
+    $this->render('admin/page.php',$params);
   }
 
   public function getPageInfosFromAlias($alias){
@@ -22,4 +28,7 @@ class DashboardController extends BaseController
       continue;
     }
   }
+
 }
+
+ ?>

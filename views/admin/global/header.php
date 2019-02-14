@@ -9,7 +9,7 @@
 <body>
 <nav id="menu-navigation-admin">  <ul>
     <?php foreach($params['routes'] as $route): ?>
-        <li><a href="/page/<?php echo $route->alias; ?>"><?php echo $route->name; ?></a></li>
+        <li><a href="/admin/<?php echo $route->alias; ?>"><?php echo $route->name; ?></a></li>
     <?php endforeach; ?>
   </ul>
 </nav>
