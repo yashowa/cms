@@ -24,6 +24,19 @@ class UserController extends BaseController
     //return true;
     return false;
   }
+  public static function getList(){
+          $list= array();
+          $result = Connection::getInstance()->query('SELECT firstname, lastname,email, id_profile,id_user FROM deb_users' );
+
+          while ($row = $result->fetch()) {
+            $list[]= $row;
+          }
+          if(!$list){
+            die ('problème de connexion');
+          }
+          return $list;
+  }
+
 }
 
 ?>

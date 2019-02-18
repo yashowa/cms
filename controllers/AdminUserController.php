@@ -8,25 +8,36 @@ class AdminUserController extends BaseController{
 
 
     $alias =explode('/',$this->_querystring)[2];
-    var_dump($alias);
-    exit;
+    //var_dump($alias);
+
     $pageDatas = $this->getPageInfosFromAlias($alias);
     $params=array(
       'page_name'=>"$pageDatas->name",
       'routes'=>$this->getAdminRoutes(),
-      'content'=>$pageDatas->content
+      'content'=>$pageDatas->content,
+      'users'=>UserController::getList()
     );
-    $this->render('admin/page.php',$params);
+
+    $this->render('admin/users.php',$params);
   }
 
   public function getPageInfosFromAlias($alias){
-    $pages = $this->getRoutes();
+    $pages = $this->getAdminRoutes();
     foreach($pages as $page ){
       if($page->alias == $alias){
         return $page;
       }
       continue;
     }
+  }
+  public function add(){
+
+  }
+  public function delete($userId){
+
+  }
+  public function update($userId){
+
   }
 
 }
