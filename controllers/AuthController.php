@@ -9,6 +9,7 @@ class AuthController extends BaseController{
      if(isset($_SESSION['user'])){
         return  $_SESSION['user'];
      }
+     return false;
 
   }
 }

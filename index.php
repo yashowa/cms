@@ -12,6 +12,7 @@ $uri = $_SERVER['REQUEST_URI'];
 
 spl_autoload_register(function ($class_name) {
   //echo PATHCONTROLLER.$class_name . '.php'."<br>";
+//  echo "<p>chargement du controller ".PATHCONTROLLER.$class_name . ".php</p>";
   try{
     if (!file_exists(PATHCONTROLLER.$class_name . '.php')){
 
@@ -54,6 +55,7 @@ $controllerFile = $controllerName.'.php';
 
 
   $app = new $controllerName() ;//or die("error 404");
+
   $app->index();
 exit;
   $methods= get_class_methods($app);
@@ -80,6 +82,7 @@ try {
 }else{
   $app =new IndexController();
   $app->index();
+
 }
 
 ?>
