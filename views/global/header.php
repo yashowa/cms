@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <title><?php echo($params['page_name']);?></title>
-  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/dist/main.css">
 </head>
 <body>
 <nav id="menu-navigation">
