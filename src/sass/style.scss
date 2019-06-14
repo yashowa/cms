@@ -1,7 +1,19 @@
+
+
+//ADMIN
+@import '/admin/header';
+@import '/admin/footer';
+@import '/admin/navigation';
+
+//FRONT
+@import '/front/header';
+@import '/front/footer';
+@import '/front/navigation';
+@import '_variables';
+
 $background:#000000;
 
 body{
   font-color: $background;
   font-family:arial;
-  color:#ffffff;
 }

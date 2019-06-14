@@ -3,7 +3,7 @@
 <div id="wrap-users">
   <h1><?php echo($params['page_name']);?></h1>
 
-  <a href="" class="js-add-user">Ajouter un nouvel utilisateur</a>
+  <a href="user/new" class="js-add-user">Ajouter un nouvel utilisateur</a>
 
   <table>
     <thead>

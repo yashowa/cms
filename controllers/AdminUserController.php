@@ -8,6 +8,8 @@ class AdminUserController extends BaseController{
 
 
     $alias =explode('/',$this->_querystring)[2];
+    $action =explode('/',$this->_querystring)[3];
+
     //var_dump($alias);
 
     $pageDatas = $this->getPageInfosFromAlias($alias);
