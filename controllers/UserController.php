@@ -36,7 +36,19 @@ class UserController extends BaseController
           }
           return $list;
   }
+  public static function getUser($id){
+      $result = Connection::getInstance()->query('SELECT firstname, lastname,email, id_profile,id_user,passwd FROM deb_users WHERE id_user = '.$id);
+      $user = $result->fetch();
+      return $user;
+  }
+
+
+  public function create($user){
+  $sql ="INSERT INTO deb_users VALUES ($user['id_user'],$user['id_profile'],$user['firstname'],$user['lastname'],$user['email'],$user['passwd'],$user['last_connexion'],$user['last_upddate'])";
+  }
 
 }
+
+
 
 ?>

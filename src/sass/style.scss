@@ -1,5 +1,7 @@
 
-
+//global
+@import '_variables';
+@import '_global';
 //ADMIN
 @import '/admin/header';
 @import '/admin/footer';
@@ -9,11 +11,3 @@
 @import '/front/header';
 @import '/front/footer';
 @import '/front/navigation';
-@import '_variables';
-
-$background:#000000;
-
-body{
-  font-color: $background;
-  font-family:arial;
-}

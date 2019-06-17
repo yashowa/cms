@@ -22,6 +22,10 @@
                   <td><?php echo $user['firstname'] ?></td>
                   <td><?php echo $user['lastname'] ?></td>
                   <td><?php echo $user['email'] ?></td>
+                  <td>
+                    <a href="/admin/user/<?php echo $user['id_user'];?>">Modifier<a>
+                    <a href="delete">Supprimer<a>
+                  </td>
                 </tr>
               <?php endforeach;?>
       <?php else: ?>

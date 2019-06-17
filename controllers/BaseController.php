@@ -8,6 +8,7 @@ class BaseController
   public $_connexion;
   public $_querystring;
   public $action;
+  public $table;
 
 /*
 *get $routes
@@ -62,4 +63,5 @@ setter page name from controller
   static function pageNotFound($error=null){
       include(ROOT.'/views/404.php');
   }
+
 }

@@ -1,3 +1,36 @@
+/*font Color*/
+body {
+  font-color: #ffffff;
+  font-family: arial; }
+
+input {
+  display: block;
+  margin-bottom: 15px;
+  border: 1px solid #dadada;
+  border-radius: 5px;
+  padding: 7px; }
+
+button[type=submit] {
+  border-radius: 5px !important;
+  border: 1px solid;
+  padding: 7px;
+  box-shadow: none;
+  background: transparent;
+  margin: 15px 0;
+  display: block; }
+
+select {
+  border-radius: 5px !important;
+  padding: 7px; }
+
+.success {
+  background: #008000 !important;
+  color: #ffffff; }
+
+.danger {
+  background: #F00000;
+  color: #ffffff; }
+
 body {
   font-family: arial;
   color: grey; }
@@ -28,9 +61,4 @@ p {
   list-style-type: none; }
   #menu-navigation ul li a {
     padding: 15px; }
-
-/*font Color*/
-body {
-  font-color: #000000;
-  font-family: arial; }
 
