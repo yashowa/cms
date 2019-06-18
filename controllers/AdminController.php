@@ -1,5 +1,6 @@
 <?php
-//session_start();
+session_start();
+
 
 class AdminController extends BaseController
 {
@@ -60,19 +61,27 @@ class AdminController extends BaseController
         'page_name'=>"Deb CMS ",
       );
     var_dump($_POST);
-    if(isset($email)&& $email!='' && isset($passwd) & $passwd!=''){
-          $sql="SELECT * FROM deb_users WHERE email='$email' AND passwd='".md5($this->encrypt($passwd))."'";
-        echo $sql;
 
-       echo "<br>".md5($this->encrypt($passwd,KEY_PWD));
+    if(isset($email)&& $email!='' && isset($passwd) & $passwd!=''){
+          $sql="SELECT * FROM deb_users WHERE email='$email'";
+      //AND passwd='".$this->encrypt($passwd)."'";
+        echo $sql;
+          echo "<br>";
+
+       //echo "<br>".md5($this->encrypt($passwd,KEY_PWD));
 
           $co = Connection::getInstance()->query($sql);
           $co->setFetchMode(PDO::FETCH_OBJ);
           $result=$co->fetch();
-          if($result){
+
+          var_dump($result);
+          echo $result->passwd."<br>";
+         var_dump(password_verify($passwd,$result->passwd));
+          if($result && password_verify($passwd,$result->passwd)){
               //if(count($result)>0){}
+              echo "success";
               $_SESSION['user'] = $result;
-                          header('Location:/admin/dashboard');
+              header('Location:/admin/dashboard');
           }else{
             $error ="erreur de connexion, login ou mot de passe erronné";
             $params['error'][]=$error;
@@ -88,21 +97,9 @@ class AdminController extends BaseController
 
   public function logout(){
     unset($_SESSION['user']);
+      header('Location:/admin');
   }
 
-  private function encrypt($pure_string, $encryption_key=false) {
-    $iv_size = mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB);
-    $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
-    $encrypted_string = mcrypt_encrypt(MCRYPT_BLOWFISH, $encryption_key, utf8_encode($pure_string), MCRYPT_MODE_ECB, $iv);
-    return $encrypted_string;
-  }
-
-  private function decrypt($encrypted_string, $encryption_key) {
-      $iv_size = mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB);
-      $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
-      $decrypted_string = mcrypt_decrypt(MCRYPT_BLOWFISH, $encryption_key, $encrypted_string, MCRYPT_MODE_ECB, $iv);
-      return $decrypted_string;
-  }
 }
 
 ?>

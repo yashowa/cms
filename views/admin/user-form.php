@@ -2,7 +2,7 @@
 
 <h1><?php echo($params['page_name']);?></h1>
 
-<form id="form-user" method="post" action="<?php echo $param['url'];?>">
+<form id="form-user" method="post" action="<?php echo $params['url'];?>">
   <input type="text" name="lastname" placeholder="Nom" value="<?php echo(isset($params['user'])?$params['user']['lastname']:"");?>"/>
   <input type="text" name="firstname" placeholder="Prénom" value="<?php echo(isset($params['user'])?$params['user']['firstname']:"");?>"/>
   <input type="mail" name="email" placeholder="Adresse E-mail" value="<?php echo(isset($params['user'])?$params['user']['email']:"");?>"/>

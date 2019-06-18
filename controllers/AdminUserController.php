@@ -21,20 +21,21 @@ class AdminUserController extends BaseController{
 
     if(method_exists($this,$action)){
 
+        $this->$action();
     }elseif ($action=="new") {
       $params['page_name']="Nouvel utilisateur";
       $params['submit']="Ajouter l'utilisateur";
-      $this->render('admin/user-form.php',$params);
-      $params['url'] = "/user/add";
+      $params['url'] = "/admin/user/add";
+      $this->render('/admin/user-form.php',$params);
+
     }elseif ($action =="edit" || (int)$action!=0) {
 
       $params['page_name']="Modifier l'utilisateur";
       $params['submit']=$params['page_name'];
       $params['user'] = UserController::getUser($action);
-      $params['url'] = "/user/update";
+      $params['url'] = "admin/user/update";
       $this->render('admin/user-form.php',$params);
-    }
-  else{
+    } else {
       $this->render('admin/users.php',$params);
     }
   }
@@ -49,8 +50,9 @@ class AdminUserController extends BaseController{
     }
   }
   public function add(){
-      var_dump($_POST);
-      exit;
+      UserController::create($_POST);
+      //var_dump($_POST);
+      header('Location:/admin/user');
   }
   public function delete($userId){
 

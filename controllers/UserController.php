@@ -1,52 +1,73 @@
 <?php
 class UserController extends BaseController
 {
-  public function index(){
+    public function index()
+    {
 
-    $params=array(
-      'page_name'=>"Accueil",
-      'routes'=>$this->getRoutes()
-    );
+        $params = array(
+            'page_name' => "Accueil",
+            'routes' => $this->getRoutes()
+        );
 
 //var_dump($params);
-    $this->render('home.php',$params);
-  }
+        $this->render('home.php', $params);
+    }
 
-  public static function isConnected(){
- return false;
-  }
-  public static function isAuth(){
+    public static function isConnected()
+    {
+        return false;
+    }
 
-    var_dump($_POST);
-      $result =Connection::getInstance()->query('SELECT * FROM deb_users' );
-      $result->setFetchMode(PDO::FETCH_OBJ);
+    public static function isAuth()
+    {
 
-    //return true;
-    return false;
-  }
-  public static function getList(){
-          $list= array();
-          $result = Connection::getInstance()->query('SELECT firstname, lastname,email, id_profile,id_user FROM deb_users' );
+        var_dump($_POST);
+        $result = Connection::getInstance()->query('SELECT * FROM deb_users');
+        $result->setFetchMode(PDO::FETCH_OBJ);
 
-          while ($row = $result->fetch()) {
-            $list[]= $row;
-          }
-          if(!$list){
+        //return true;
+        return false;
+    }
+
+    public static function getList()
+    {
+        $list = array();
+        $result = Connection::getInstance()->query('SELECT firstname, lastname,email, id_profile,id_user FROM deb_users');
+
+        while ($row = $result->fetch()) {
+            $list[] = $row;
+        }
+        if (!$list) {
             die ('problème de connexion');
-          }
-          return $list;
-  }
-  public static function getUser($id){
-      $result = Connection::getInstance()->query('SELECT firstname, lastname,email, id_profile,id_user,passwd FROM deb_users WHERE id_user = '.$id);
-      $user = $result->fetch();
-      return $user;
-  }
+        }
+        return $list;
+    }
+
+    public static function getUser($id)
+    {
+        $result = Connection::getInstance()->query('SELECT firstname, lastname,email, id_profile,id_user,passwd FROM deb_users WHERE id_user = ' . $id);
+        $user = $result->fetch();
+        return $user;
+    }
 
 
-  public function create($user){
-  $sql ="INSERT INTO deb_users VALUES ($user['id_user'],$user['id_profile'],$user['firstname'],$user['lastname'],$user['email'],$user['passwd'],$user['last_connexion'],$user['last_upddate'])";
-  }
+    public static function create($user)
+    {
 
+        var_dump($user);
+        $profile = $user['profile'];
+        $firstname = $user['firstname'];
+        $lastname = $user['lastname'];
+        $email = $user['email'];
+        $password = password_hash($user['passwd'],PASSWORD_DEFAULT);
+        $last_connexion = date("Y-m-d H:i:s");
+        $last_update = date("Y-m-d H:i:s");
+
+        $sql = "INSERT INTO deb_users VALUES (0,'$profile','$firstname','$lastname','$email','$password','$last_connexion','$last_update')";
+
+        Connection::getInstance()->query($sql);
+
+    }
 }
 
 

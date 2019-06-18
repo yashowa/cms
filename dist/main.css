@@ -33,7 +33,7 @@ select {
 
 body {
   font-family: arial;
-  color: grey; }
+ }
 
 /*font Color*/
 #menu-navigation-admin ul {
@@ -61,4 +61,3 @@ p {
   list-style-type: none; }
   #menu-navigation ul li a {
     padding: 15px; }
-
