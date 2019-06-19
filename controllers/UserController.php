@@ -69,7 +69,40 @@ class UserController extends BaseController
         Connection::getInstance()->query($sql);
     }
 
-    public static function update($user){
+    public static function update($user , $userId){
+
+        $userToUpdate = self::getUser($userId);
+        var_dump($userToUpdate);
+        exit;
+
+        if($user['password'] != $userToUpdate['passwd']){
+            $password = (new self)->isValid(password_hash($user['password'],PASSWORD_DEFAULT));
+        }
+        $profile = (new self)->isValid($user['profile']);
+        $firstname = (new self)->isValid($user['firstname']);
+        $lastname = (new self)->isValid($user['lastname']);
+        $email = (new self)->isValid($user['email']);
+        $sql = "UPDATE FROM deb_users SET (id_profile=$profile,firstname=$firstname,lastname=$lastname,email=$email,passwd=$password,last_connexion=$last_connexion,last_update=$last_update) WHERE id_user = ".$userId;
+        echo $sql;
+        exit;
+    }
+
+    public function isValid($field){
+
+        if($field!=""){
+           return false;
+        }
+
+        switch ($field){
+            case 'password':
+                break;
+            case 'firstname':
+                break;
+            case 'lastname':
+                break;
+            case 'email':
+                break;
+        }
 
     }
 }

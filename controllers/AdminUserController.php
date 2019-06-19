@@ -16,16 +16,22 @@ $parsedQueryString=explode('/',$this->_querystring);
       echo"<pre>";
       var_dump($pageDatas);
       echo "</pre>";
+
+
+      die('lol');
+
+      var_dump($pageDatas);
+
       $params=array(
         'page_name'=>$pageDatas->name,
         'routes'=>$this->getAdminRoutes(),
-        'content'=>$pageDatas->content,
+        'content'=>isset($pageDatas->content)?$pageDatas->content:"",
         'users'=>UserController::getList()
       );
 
-if (count($parsedQueryString) >=4){
-      $action =explode('/',$this->_querystring)[3];
-}
+    if (count($parsedQueryString) >=4){
+          $action =explode('/',$this->_querystring)[3];
+    }
       //var_dump($alias);
 
 
@@ -33,20 +39,27 @@ if (count($parsedQueryString) >=4){
 
         $this->$action();
     }elseif ($action=="new") {
-      $params['page_name']="Nouvel utilisateur";
-      $params['submit']="Ajouter l'utilisateur";
-      $params['url'] = "/admin/user/add";
-      $this->render('/admin/user-form.php',$params);
+
+        $params['page_name']="Nouvel utilisateur";
+        $params['submit']="Ajouter l'utilisateur";
+        $params['url'] = "/admin/user/add";
+        $this->render('/admin/user-form.php',$params);
 
     }elseif ($action =="edit" || (int)$action!=0) {
 
-      $params['page_name']="Modifier l'utilisateur";
-      $params['submit']=$params['page_name'];
-      $params['user'] = UserController::getUser($action);
-      $params['url'] = "admin/user/update";
-      $this->render('admin/user-form.php',$params);
+        die('ol');
+        $user = UserController::getUser($action);
+        $params['page_name']="Modifier l'utilisateur";
+        $params['submit']=$params['page_name'];
+        $params['user'] = $user;
+        $params['url'] = "/admin/update/1";
+        $this->render('admin/user-form.php',$params);
+
     } else {
+        die('lol');
       $this->render('admin/users.php',$params);
+      echo'ok';
+      exit;
     }
   }
 
@@ -67,8 +80,12 @@ if (count($parsedQueryString) >=4){
   public function delete($userId){
 
   }
-  public function update($userId){
-  UserController::update($_POST);
+  public function update(){
+      die('update');
+      if(isset($_GET['userId'])){
+        $userId = $_GET['userId'];
+        UserController::update($_POST,$userId);
+      }
   }
 }
 
