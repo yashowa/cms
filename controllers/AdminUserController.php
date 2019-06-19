@@ -1,23 +1,33 @@
 <?php
 
 
-
+/*
+class AdminUserController
+role gestion and crud of users admin in website
+*/
 class AdminUserController extends BaseController{
 
   public function index(){
+$parsedQueryString=explode('/',$this->_querystring);
 
       $alias =explode('/',$this->_querystring)[2];
-      $action =explode('/',$this->_querystring)[3];
-
-      //var_dump($alias);
 
       $pageDatas = $this->getPageInfosFromAlias($alias);
+      echo"<pre>";
+      var_dump($pageDatas);
+      echo "</pre>";
       $params=array(
-        'page_name'=>"$pageDatas->name",
+        'page_name'=>$pageDatas->name,
         'routes'=>$this->getAdminRoutes(),
         'content'=>$pageDatas->content,
         'users'=>UserController::getList()
       );
+
+if (count($parsedQueryString) >=4){
+      $action =explode('/',$this->_querystring)[3];
+}
+      //var_dump($alias);
+
 
     if(method_exists($this,$action)){
 
@@ -58,9 +68,8 @@ class AdminUserController extends BaseController{
 
   }
   public function update($userId){
-
+  UserController::update($_POST);
   }
-
 }
 
  ?>

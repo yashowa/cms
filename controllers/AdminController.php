@@ -1,11 +1,9 @@
 <?php
-session_start();
-
-
+/*
+class AdminController
+role: gestion of website Administration*/
 class AdminController extends BaseController
 {
-
-
   public $method;
   public function index(){
     //verification de la _connexion
@@ -20,7 +18,7 @@ class AdminController extends BaseController
       }else{
           // $this->render('admin/form-login.php',$params);
           // si on est connecté avec une action definie
-        if($queryStringArray[2]!="" &$queryStringArray[2]!='dashboard'){
+        if(isset($queryStringArray[2]) && $queryStringArray[2]!="" && $queryStringArray[2]!='dashboard'){
             $action=$queryStringArray[2];
             $cl =ucfirst($action).'Controller';
             echo "la methode $action renvoie \n";
@@ -48,8 +46,8 @@ class AdminController extends BaseController
           $class->index();
         }
     }
-}
-
+  }
+  
   public function login(){
 
     if (isset($_POST['email']) && isset( $_POST['password'])){
@@ -60,7 +58,6 @@ class AdminController extends BaseController
       $params=array(
         'page_name'=>"Deb CMS ",
       );
-    var_dump($_POST);
 
     if(isset($email)&& $email!='' && isset($passwd) & $passwd!=''){
           $sql="SELECT * FROM deb_users WHERE email='$email'";
@@ -75,8 +72,7 @@ class AdminController extends BaseController
           $result=$co->fetch();
 
           var_dump($result);
-          echo $result->passwd."<br>";
-         var_dump(password_verify($passwd,$result->passwd));
+
           if($result && password_verify($passwd,$result->passwd)){
               //if(count($result)>0){}
               echo "success";
@@ -92,14 +88,11 @@ class AdminController extends BaseController
       var_dump($params);
          $this->render('admin/form-login.php',$params);
     }
-
   }
-
   public function logout(){
     unset($_SESSION['user']);
       header('Location:/admin');
   }
-
 }
 
 ?>

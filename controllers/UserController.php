@@ -51,21 +51,25 @@ class UserController extends BaseController
     }
 
 
-    public static function create($user)
-    {
+    public static function create($user){
 
         var_dump($user);
         $profile = $user['profile'];
         $firstname = $user['firstname'];
         $lastname = $user['lastname'];
         $email = $user['email'];
-        $password = password_hash($user['passwd'],PASSWORD_DEFAULT);
+        $password = password_hash($user['password'],PASSWORD_DEFAULT);
+        echo'<pre>';
+        var_dump(password_verify($user['password'],$password));
+        echo'</pre>';
         $last_connexion = date("Y-m-d H:i:s");
         $last_update = date("Y-m-d H:i:s");
-
         $sql = "INSERT INTO deb_users VALUES (0,'$profile','$firstname','$lastname','$email','$password','$last_connexion','$last_update')";
 
         Connection::getInstance()->query($sql);
+    }
+
+    public static function update($user){
 
     }
 }

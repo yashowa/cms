@@ -1,6 +1,10 @@
 <?php
 
 
+/*
+class AuthController
+check authentication of user logged or not
+*/
 
 class AuthController extends BaseController{
 
