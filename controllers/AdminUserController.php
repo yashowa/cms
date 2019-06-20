@@ -18,10 +18,10 @@ $parsedQueryString=explode('/',$this->_querystring);
       echo "</pre>";
 
 
-      die('lol');
+      echo"<pre>";
 
       var_dump($pageDatas);
-
+      echo"</pre>";
       $params=array(
         'page_name'=>$pageDatas->name,
         'routes'=>$this->getAdminRoutes(),
@@ -29,38 +29,36 @@ $parsedQueryString=explode('/',$this->_querystring);
         'users'=>UserController::getList()
       );
 
-    if (count($parsedQueryString) >=4){
-          $action =explode('/',$this->_querystring)[3];
-    }
-      //var_dump($alias);
-
-
-    if(method_exists($this,$action)){
-
-        $this->$action();
-    }elseif ($action=="new") {
-
-        $params['page_name']="Nouvel utilisateur";
-        $params['submit']="Ajouter l'utilisateur";
-        $params['url'] = "/admin/user/add";
-        $this->render('/admin/user-form.php',$params);
-
-    }elseif ($action =="edit" || (int)$action!=0) {
-
-        die('ol');
-        $user = UserController::getUser($action);
-        $params['page_name']="Modifier l'utilisateur";
-        $params['submit']=$params['page_name'];
-        $params['user'] = $user;
-        $params['url'] = "/admin/update/1";
-        $this->render('admin/user-form.php',$params);
-
-    } else {
-        die('lol');
-      $this->render('admin/users.php',$params);
-      echo'ok';
-      exit;
-    }
+    if (count($parsedQueryString) >=4){ //s'il y'a une action de decrite dans l'url
+        $action =explode('/',$this->_querystring)[3];
+    //var_dump($alias);
+        if(method_exists($this,$action)){
+          $this->$action();
+        }elseif ($action=="new") {
+          $params['page_name']="Nouvel utilisateur";
+          $params['submit']="Ajouter l'utilisateur";
+          $params['url'] = "/admin/user/add";
+          $this->render('/admin/user-form.php',$params);
+        }elseif ($action =="edit" || (int)$action!=0) {// si l'action est un userid on passe en mode edition de l'user
+          $user = UserController::getUser($action);
+          $params['page_name']="Modifier l'utilisateur";
+          $params['submit']=$params['page_name'];
+          $params['user'] = $user;
+          $params['url'] = "/admin/user/".$user['id_user']."/update";
+          if(count($parsedQueryString)>4 && $parsedQueryString[4]=='update'){
+            $update = $this->update($user['id_user']);
+            if(isset($update['errors'])){
+              $params['errors'] = $update['errors'];
+            }else{
+              $params['success'] = "Mise à jour de l'utilisateur ".$user['firstname'] ."effectuée avec succès";
+            }
+          }
+          $this->render('admin/user-form.php',$params);
+        }
+      } else {
+        $this->render('admin/users.php',$params);
+        echo'ok';
+      }
   }
 
   public function getPageInfosFromAlias($alias){
@@ -80,12 +78,8 @@ $parsedQueryString=explode('/',$this->_querystring);
   public function delete($userId){
 
   }
-  public function update(){
-      die('update');
-      if(isset($_GET['userId'])){
-        $userId = $_GET['userId'];
-        UserController::update($_POST,$userId);
-      }
+  public function update($userId){
+        return UserController::update($_POST,$userId);
   }
 }
 

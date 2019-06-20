@@ -50,7 +50,6 @@ class UserController extends BaseController
         return $user;
     }
 
-
     public static function create($user){
 
         var_dump($user);
@@ -72,36 +71,76 @@ class UserController extends BaseController
     public static function update($user , $userId){
 
         $userToUpdate = self::getUser($userId);
-        var_dump($userToUpdate);
-        exit;
+        echo "<pre>";
+        var_dump($user);
+        echo"</pre>";
 
+        $errors=array();
+        $password =  $userToUpdate['passwd'];
         if($user['password'] != $userToUpdate['passwd']){
             $password = (new self)->isValid(password_hash($user['password'],PASSWORD_DEFAULT));
         }
-        $profile = (new self)->isValid($user['profile']);
-        $firstname = (new self)->isValid($user['firstname']);
-        $lastname = (new self)->isValid($user['lastname']);
-        $email = (new self)->isValid($user['email']);
-        $sql = "UPDATE FROM deb_users SET (id_profile=$profile,firstname=$firstname,lastname=$lastname,email=$email,passwd=$password,last_connexion=$last_connexion,last_update=$last_update) WHERE id_user = ".$userId;
-        echo $sql;
+
+        if(!(new self)->isValid($user['profile'],'profile')){
+          $errors[]="Vous n'avez pas sélectionné de rôle";
+        }
+        if(!(new self)->isValid($user['firstname'],'name')){
+            $firstname = $user['firstname'];
+            $errors[]="Prénom incorrect";
+        }
+        if(!(new self)->isValid($user['lastname'],'name')){
+            $lastname = $user['lastname'];
+            $errors[]="Nom de famille incorrect";
+        }
+        if(!(new self)->isValid($user['email'],'email')){
+            $errors[]="Format d'adresse email incorrect";
+        }
+
+        if(count($errors)>0){
+          return array(
+            "errors"=> $errors
+          );
+        }
+
+        $last_connexion = date("Y-m-d H:i:s");
+        $last_update = date("Y-m-d H:i:s");
+
+        $sql = "UPDATE deb_users SET id_profile='?',firstname='?',lastname='?',email='?',passwd='?',last_connexion='?',last_update='?'";
+        $q = Connection::getInstance()->prepare($sql);
+        $data = array($user['profile'],$user['firstname'],$user['lastname'],$user['email'],$password,$last_connexion,$last_update);
+        /*$sql = "UPDATE `deb_users` ";
+        $sql.= "SET id_profile=".$user['profile'].",firstname="."'".$user['firstname']."'".",lastname="."'".$user['lastname']."'".",email="."'".$user['email']."'".",passwd="."'".$password."'".",last_connexion="."'".$last_connexion."'".",last_update="."'".$last_update."'";
+        $sql.="WHERE id_user =$userId";
+        echo $sql;*/
+        var_dump($q);
         exit;
+        $q->execute($data);
+
+        //exit;
     }
 
-    public function isValid($field){
+    public function isValid($field,$format){
 
-        if($field!=""){
+        if($field==""){
            return false;
         }
 
-        switch ($field){
+        switch ($format){
             case 'password':
+            return true;
                 break;
-            case 'firstname':
-                break;
-            case 'lastname':
+            case 'name':
+            return true;
                 break;
             case 'email':
+            return true;
                 break;
+            case 'profile':
+            return true;
+            break;
+            case 'email':
+            return true;
+            break;
         }
 
     }

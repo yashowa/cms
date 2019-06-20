@@ -10,9 +10,9 @@ class AdminController extends BaseController
     //echo $this->_querystring;
 
       $queryStringArray = explode('/',$this->_querystring);
-
+      echo"<pre>";
       var_dump($queryStringArray);
-
+      echo"</pre>";
       if(!AuthController::isLogged() && $queryStringArray[2]!='login'){
         header('Location:/admin/login');
       }else{
@@ -22,7 +22,9 @@ class AdminController extends BaseController
             $action=$queryStringArray[2];
             $cl =ucfirst($action).'Controller';
             echo "la methode $action renvoie \n";
+                  echo"<pre>";
             var_dump(method_exists($this,$action));
+                  echo"</pre>";
             echo "nom du controller \n";
             echo($cl);
           //  var_dump(interface_exists('Admin'.ucfirst($action).'Controller',true));
@@ -47,7 +49,7 @@ class AdminController extends BaseController
         }
     }
   }
-  
+
   public function login(){
 
     if (isset($_POST['email']) && isset( $_POST['password'])){
@@ -70,9 +72,9 @@ class AdminController extends BaseController
           $co = Connection::getInstance()->query($sql);
           $co->setFetchMode(PDO::FETCH_OBJ);
           $result=$co->fetch();
-
+      echo"<pre>";
           var_dump($result);
-
+      echo"</pre>";
           if($result && password_verify($passwd,$result->passwd)){
               //if(count($result)>0){}
               echo "success";
@@ -85,7 +87,9 @@ class AdminController extends BaseController
                      $this->render('admin/form-login.php',$params);
           }
     }else{
+            echo"<pre>";
       var_dump($params);
+            echo"</pre>";
          $this->render('admin/form-login.php',$params);
     }
   }

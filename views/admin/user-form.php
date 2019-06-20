@@ -2,6 +2,19 @@
 
 <h1><?php echo($params['page_name']);?></h1>
 
+
+<?php if(isset($params['errors'])):?>
+  <ul class="danger">
+  <?php foreach($params['errors'] as $error): ?>
+    <li ><?php echo $error;?></p>
+  <?php endforeach; ?>
+</ul>
+<?php endif; ?>
+
+<?php if(isset($params['success'])):?>
+    <p class="success"><?php echo $params['success'];?></p>
+<?php endif; ?>
+
 <form id="form-user" method="post" action="<?php echo $params['url'];?>">
   <input type="text" name="lastname" placeholder="Nom" value="<?php echo(isset($params['user'])?$params['user']['lastname']:"");?>"/>
   <input type="text" name="firstname" placeholder="Prénom" value="<?php echo(isset($params['user'])?$params['user']['firstname']:"");?>"/>
