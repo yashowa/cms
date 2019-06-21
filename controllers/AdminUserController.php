@@ -79,7 +79,9 @@ $parsedQueryString=explode('/',$this->_querystring);
 
   }
   public function update($userId){
-        return UserController::update($_POST,$userId);
+        var_dump(UserController::update($_POST,$userId));
+
+         exit;
   }
 }
 

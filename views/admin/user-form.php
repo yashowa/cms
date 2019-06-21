@@ -3,12 +3,13 @@
 <h1><?php echo($params['page_name']);?></h1>
 
 
+
 <?php if(isset($params['errors'])):?>
   <ul class="danger">
   <?php foreach($params['errors'] as $error): ?>
-    <li ><?php echo $error;?></p>
+    <li><?php echo $error;?></li>
   <?php endforeach; ?>
-</ul>
+  </ul>
 <?php endif; ?>
 
 <?php if(isset($params['success'])):?>

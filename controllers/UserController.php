@@ -1,4 +1,6 @@
 <?php
+
+
 class UserController extends BaseController
 {
     public function index()
@@ -32,7 +34,8 @@ class UserController extends BaseController
     public static function getList()
     {
         $list = array();
-        $result = Connection::getInstance()->query('SELECT firstname, lastname,email, id_profile,id_user FROM deb_users');
+        $result = Connection::getInstance()->prepare('SELECT firstname, lastname,email, id_profile,id_user FROM deb_users');
+        $result->execute();
 
         while ($row = $result->fetch()) {
             $list[] = $row;
@@ -45,9 +48,11 @@ class UserController extends BaseController
 
     public static function getUser($id)
     {
-        $result = Connection::getInstance()->query('SELECT firstname, lastname,email, id_profile,id_user,passwd FROM deb_users WHERE id_user = ' . $id);
-        $user = $result->fetch();
-        return $user;
+        $list=array();
+        $result = Connection::getInstance()->prepare('SELECT firstname, lastname,email, id_profile,id_user,passwd FROM deb_users WHERE id_user = :id');
+        $result->bindValue(":id",$id,PDO::PARAM_STR);
+        $result->execute();
+        return $result->fetch();
     }
 
     public static function create($user){
@@ -70,13 +75,13 @@ class UserController extends BaseController
 
     public static function update($user , $userId){
 
-        $userToUpdate = self::getUser($userId);
-        echo "<pre>";
-        var_dump($user);
-        echo"</pre>";
 
+        $userToUpdate = self::getUser($userId);
+
+        var_dump($userToUpdate);
         $errors=array();
         $password =  $userToUpdate['passwd'];
+
         if($user['password'] != $userToUpdate['passwd']){
             $password = (new self)->isValid(password_hash($user['password'],PASSWORD_DEFAULT));
         }
@@ -96,26 +101,56 @@ class UserController extends BaseController
             $errors[]="Format d'adresse email incorrect";
         }
 
+        // On cherche s'l y'a deserreurs dans les champs du formulaire
         if(count($errors)>0){
           return array(
             "errors"=> $errors
           );
         }
 
-        $last_connexion = date("Y-m-d H:i:s");
+
+        echo "\n requete lancee";
+        var_dump($user);
         $last_update = date("Y-m-d H:i:s");
 
-        $sql = "UPDATE deb_users SET id_profile='?',firstname='?',lastname='?',email='?',passwd='?',last_connexion='?',last_update='?'";
-        $q = Connection::getInstance()->prepare($sql);
-        $data = array($user['profile'],$user['firstname'],$user['lastname'],$user['email'],$password,$last_connexion,$last_update);
+        $sql = 'UPDATE deb_users SET id_profile=:profile,firstname=:firstname,lastname=:lastname,email=:email,passwd=:password,last_update=:lastupdate WHERE id_user =:userId';
+//$sql="SELECT * FROM deb_page";
+
+
+            $pdo = new PDO('mysql:host=127.0.0.1;dbname=games', 'root', 'albalogic');
+            $q = $pdo->prepare($sql);
+            $q->bindValue(':profile', (int)$user['profile'], PDO::PARAM_INT);
+            $q->bindValue(':firstname', $user['firstname'], PDO::PARAM_STR);
+            $q->bindValue(':lastname', $user['lastname'], PDO::PARAM_STR);
+            $q->bindValue(':email', $user['email'], PDO::PARAM_STR);
+            $q->bindValue(':password', $password, PDO::PARAM_STR);
+            $q->bindValue(':lastupdate', $last_update, PDO::PARAM_STR);
+            $q->bindValue(':userId', (int)$userToUpdate['id_user'], PDO::PARAM_INT);
+
+
+            $q->execute();
+
+            return $q;
+
+            $q->debugDumpParams();
+
+
+        /*if($q->execute($datas)){
+            return array(
+                "status"=>"success",
+                "message"=>"la mise à jour  du compte de ".$userToUpdate['firstname']." ".$userToUpdate['lastname']." a été effectuée avec succès"
+            );
+        }else{
+
+            $errors[]="Une erreur est sur venue lors de la mise à jour  du compte de ".$userToUpdate['firstname']." ". $userToUpdate['lastname'];
+            return $errors;
+
+        };*/
         /*$sql = "UPDATE `deb_users` ";
         $sql.= "SET id_profile=".$user['profile'].",firstname="."'".$user['firstname']."'".",lastname="."'".$user['lastname']."'".",email="."'".$user['email']."'".",passwd="."'".$password."'".",last_connexion="."'".$last_connexion."'".",last_update="."'".$last_update."'";
         $sql.="WHERE id_user =$userId";
         echo $sql;*/
-        var_dump($q);
-        exit;
-        $q->execute($data);
-
+        //var_dump($q);
         //exit;
     }
 
