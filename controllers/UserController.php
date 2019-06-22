@@ -77,8 +77,6 @@ class UserController extends BaseController
 
 
         $userToUpdate = self::getUser($userId);
-
-        var_dump($userToUpdate);
         $errors=array();
         $password =  $userToUpdate['passwd'];
 
@@ -102,56 +100,35 @@ class UserController extends BaseController
         }
 
         // On cherche s'l y'a deserreurs dans les champs du formulaire
+
         if(count($errors)>0){
           return array(
             "errors"=> $errors
           );
         }
 
-
-        echo "\n requete lancee";
-        var_dump($user);
         $last_update = date("Y-m-d H:i:s");
 
         $sql = 'UPDATE deb_users SET id_profile=:profile,firstname=:firstname,lastname=:lastname,email=:email,passwd=:password,last_update=:lastupdate WHERE id_user =:userId';
-//$sql="SELECT * FROM deb_page";
 
-
-            $pdo = new PDO('mysql:host=127.0.0.1;dbname=games', 'root', 'albalogic');
-            $q = $pdo->prepare($sql);
-            $q->bindValue(':profile', (int)$user['profile'], PDO::PARAM_INT);
+            $q = Connection::getInstance()->prepare($sql);
+            $q->bindValue(':profile', $user['profile'], PDO::PARAM_STR);
             $q->bindValue(':firstname', $user['firstname'], PDO::PARAM_STR);
             $q->bindValue(':lastname', $user['lastname'], PDO::PARAM_STR);
             $q->bindValue(':email', $user['email'], PDO::PARAM_STR);
             $q->bindValue(':password', $password, PDO::PARAM_STR);
             $q->bindValue(':lastupdate', $last_update, PDO::PARAM_STR);
-            $q->bindValue(':userId', (int)$userToUpdate['id_user'], PDO::PARAM_INT);
-
-
-            $q->execute();
-
-            return $q;
-
-            $q->debugDumpParams();
-
-
-        /*if($q->execute($datas)){
+            $q->bindValue(':userId', $userToUpdate['id_user'], PDO::PARAM_STR);
+          //s  $q->execute();
+        if($q->execute()){
             return array(
                 "status"=>"success",
-                "message"=>"la mise à jour  du compte de ".$userToUpdate['firstname']." ".$userToUpdate['lastname']." a été effectuée avec succès"
+                "message"=>"la mise à jour du compte de ".$userToUpdate['firstname']." ".$userToUpdate['lastname']." a été effectuée avec succès"
             );
         }else{
-
             $errors[]="Une erreur est sur venue lors de la mise à jour  du compte de ".$userToUpdate['firstname']." ". $userToUpdate['lastname'];
             return $errors;
-
-        };*/
-        /*$sql = "UPDATE `deb_users` ";
-        $sql.= "SET id_profile=".$user['profile'].",firstname="."'".$user['firstname']."'".",lastname="."'".$user['lastname']."'".",email="."'".$user['email']."'".",passwd="."'".$password."'".",last_connexion="."'".$last_connexion."'".",last_update="."'".$last_update."'";
-        $sql.="WHERE id_user =$userId";
-        echo $sql;*/
-        //var_dump($q);
-        //exit;
+        };
     }
 
     public function isValid($field,$format){

@@ -17,11 +17,6 @@ $parsedQueryString=explode('/',$this->_querystring);
       var_dump($pageDatas);
       echo "</pre>";
 
-
-      echo"<pre>";
-
-      var_dump($pageDatas);
-      echo"</pre>";
       $params=array(
         'page_name'=>$pageDatas->name,
         'routes'=>$this->getAdminRoutes(),
@@ -40,19 +35,23 @@ $parsedQueryString=explode('/',$this->_querystring);
           $params['url'] = "/admin/user/add";
           $this->render('/admin/user-form.php',$params);
         }elseif ($action =="edit" || (int)$action!=0) {// si l'action est un userid on passe en mode edition de l'user
-          $user = UserController::getUser($action);
-          $params['page_name']="Modifier l'utilisateur";
-          $params['submit']=$params['page_name'];
-          $params['user'] = $user;
-          $params['url'] = "/admin/user/".$user['id_user']."/update";
-          if(count($parsedQueryString)>4 && $parsedQueryString[4]=='update'){
-            $update = $this->update($user['id_user']);
-            if(isset($update['errors'])){
-              $params['errors'] = $update['errors'];
-            }else{
-              $params['success'] = "Mise à jour de l'utilisateur ".$user['firstname'] ."effectuée avec succès";
+
+            $user = UserController::getUser($action);
+            $params['page_name']="Modifier l'utilisateur";
+            $params['submit']=$params['page_name'];
+            $params['user'] = $user;
+            $params['url'] = "/admin/user/".$user['id_user']."/update";
+
+            if(count($parsedQueryString)>4 && $parsedQueryString[4]=='update'){
+
+                $update = $this->update($user['id_user']);
+                if(isset($update['errors'])){
+                  $params['errors'] = $update['errors'];
+                }else{
+                  $params['user'] =  UserController::getUser($action);
+                  $params['success'] = "Mise à jour de l'utilisateur ".$user['firstname'] ."effectuée avec succès";
+                }
             }
-          }
           $this->render('admin/user-form.php',$params);
         }
       } else {
@@ -79,9 +78,7 @@ $parsedQueryString=explode('/',$this->_querystring);
 
   }
   public function update($userId){
-        var_dump(UserController::update($_POST,$userId));
-
-         exit;
+      return UserController::update($_POST,$userId);
   }
 }
 
