@@ -10,9 +10,9 @@ class AdminController extends BaseController
     //echo $this->_querystring;
 
       $queryStringArray = explode('/',$this->_querystring);
-      echo"<pre>";
+
       var_dump($queryStringArray);
-      echo"</pre>";
+
       if(!AuthController::isLogged() && $queryStringArray[2]!='login'){
         header('Location:/admin/login');
       }else{
@@ -22,9 +22,9 @@ class AdminController extends BaseController
             $action=$queryStringArray[2];
             $cl =ucfirst($action).'Controller';
             echo "la methode $action renvoie \n";
-                  echo"<pre>";
+
             var_dump(method_exists($this,$action));
-                  echo"</pre>";
+
             echo "nom du controller \n";
             echo($cl);
           //  var_dump(interface_exists('Admin'.ucfirst($action).'Controller',true));

@@ -3,7 +3,7 @@
 <div id="wrap-users">
   <h1><?php echo($params['page_name']);?></h1>
 
-  <a href="/admin/user/new" class="js-add-user">Ajouter un nouvel utilisateur</a>
+  <a href="/admin/user/new" class="btn btn-add js-add-user success">Ajouter un nouvel utilisateur</a>
 
   <table>
     <thead>
@@ -11,7 +11,8 @@
           <th>n° Id</th>
           <th>Prénom</th>
           <th>Nom</th>
-          <th>email</th>
+          <th>Adresse email</th>
+          <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -23,8 +24,8 @@
                   <td><?php echo $user['lastname'] ?></td>
                   <td><?php echo $user['email'] ?></td>
                   <td>
-                    <a href="/admin/user/<?php echo $user['id_user'];?>">Modifier<a>
-                    <a href="delete">Supprimer<a>
+                    <a  class="btn btn-default" href="/admin/user/<?php echo $user['id_user'];?>">Modifier<a>
+                    <a class ="btn danger" href="delete">Supprimer<a>
                   </td>
                 </tr>
               <?php endforeach;?>

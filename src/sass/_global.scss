@@ -1,7 +1,7 @@
 
 body{
-  font-color: $background;
-  font-family:arial;
+  color: $background;
+  font-family: Lato;
 }
 
 
@@ -23,6 +23,28 @@ button[type=submit]{
   display: block;
 }
 
+table{
+  width: 100%;
+  margin: 15px 0;
+  border: 1px solid $gray;
+  border-collapse: collapse;
+  thead{
+    text-align:left;
+    width: 100%;
+
+  }
+  th{
+        padding:7px 15px;
+        border: 1px solid $gray;
+  }
+  td{
+    border: 1px solid $gray;
+    padding: 7px 15px;
+
+  }
+}
+
+
 select{
     border-radius: 5px !important ;
     padding: 7px;
@@ -33,7 +55,35 @@ select{
   background: $green !important;
   color: $white;
 }
+
 .danger{
   background: $red;
   color: $white;
+}
+
+.btn{
+  display: inline-block;
+  padding:7px;
+  border-radius: 5px !important;
+  border: 1px solid;
+  font-size: 1rem;
+  box-shadow: none;
+  text-decoration: none;
+  &-add{
+    &::before{
+      content: " + ";
+      font-weight: bold;
+    }
+  }
+  &-delete{
+    &::before{
+      content: " X ";
+      font-weight: bold;
+    }
+  }
+ &-default{
+   background-color: $custom-first-color;
+   color: $white;
+ }
+
 }

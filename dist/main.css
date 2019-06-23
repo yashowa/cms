@@ -1,7 +1,7 @@
-/*font Color*/
+/*Color*/
 body {
-  font-color: #ffffff;
-  font-family: arial; }
+  color: #ffffff;
+  font-family: Lato; }
 
 input {
   display: block;
@@ -19,6 +19,21 @@ button[type=submit] {
   margin: 15px 0;
   display: block; }
 
+table {
+  width: 100%;
+  margin: 15px 0;
+  border: 1px solid #dadada;
+  border-collapse: collapse; }
+  table thead {
+    text-align: left;
+    width: 100%; }
+  table th {
+    padding: 7px 15px;
+    border: 1px solid #dadada; }
+  table td {
+    border: 1px solid #dadada;
+    padding: 7px 15px; }
+
 select {
   border-radius: 5px !important;
   padding: 7px; }
@@ -28,14 +43,51 @@ select {
   color: #ffffff; }
 
 .danger {
-  background: #F00000;
+  background: #DC143C;
   color: #ffffff; }
 
-body {
-  font-family: arial;
- }
+.btn {
+  display: inline-block;
+  padding: 7px;
+  border-radius: 5px !important;
+  border: 1px solid;
+  font-size: 1rem;
+  box-shadow: none;
+  text-decoration: none; }
+  .btn-add::before {
+    content: " + ";
+    font-weight: bold; }
+  .btn-delete::before {
+    content: " X ";
+    font-weight: bold; }
+  .btn-default {
+    background-color: #000000;
+    color: #ffffff; }
 
-/*font Color*/
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: normal;
+  src: url(fonts/Lato-Regular.ttf) format("ttf"); }
+
+@font-face {
+  font-family: "Lato-Bold";
+  font-style: normal;
+  font-weight: 500;
+  src: url(fonts/Lato-Bold.ttf) format("ttf"); }
+
+@font-face {
+  font-family: "Lato-Hairline";
+  font-style: normal;
+  font-weight: normal;
+  src: url(fonts/Lato-Hairline.ttf) format("ttf"); }
+
+body {
+  font-family: Lato;
+  color: #dadada;
+  font-style: normal; }
+
+/*Color*/
 #menu-navigation-admin ul {
   display: flex;
   width: 100%;
@@ -61,3 +113,4 @@ p {
   list-style-type: none; }
   #menu-navigation ul li a {
     padding: 15px; }
+
