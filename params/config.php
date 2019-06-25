@@ -1,6 +1,6 @@
 <?php
   define("HOST",'localhost');
-  define("DB_NAME",'games');
+  define("DB_NAME",'game');
   define("DB_USER",'root');
-  define("DB_PWD",'albalogic');
+  define("DB_PWD",'');
 ?>

@@ -3,36 +3,29 @@
 
 class UserController extends BaseController
 {
-    public function index()
-    {
-
+    public function index()  {
         $params = array(
             'page_name' => "Accueil",
             'routes' => $this->getRoutes()
         );
-
 //var_dump($params);
         $this->render('home.php', $params);
     }
 
-    public static function isConnected()
-    {
+    public static function isConnected(){
         return false;
     }
 
-    public static function isAuth()
-    {
+    public static function isAuth(){
 
-        var_dump($_POST);
+        //var_dump($_POST);
         $result = Connection::getInstance()->query('SELECT * FROM deb_users');
         $result->setFetchMode(PDO::FETCH_OBJ);
-
         //return true;
         return false;
     }
 
-    public static function getList()
-    {
+    public static function getList(){
         $list = array();
         $result = Connection::getInstance()->prepare('SELECT firstname, lastname,email, id_profile,id_user FROM deb_users');
         $result->execute();
@@ -46,8 +39,7 @@ class UserController extends BaseController
         return $list;
     }
 
-    public static function getUser($id)
-    {
+    public static function getUser($id)  {
         $list=array();
         $result = Connection::getInstance()->prepare('SELECT firstname, lastname,email, id_profile,id_user,passwd FROM deb_users WHERE id_user = :id');
         $result->bindValue(":id",$id,PDO::PARAM_STR);
@@ -55,6 +47,12 @@ class UserController extends BaseController
         return $result->fetch();
     }
 
+    public static function delete($id){
+      $sql = "DELETE FROM deb_users WHERE id_user=:user";
+      $req= Connection::getInstance()->prepare($sql);
+      $req->bindValue(":user",$id,PDO::PARAM_STR);
+      $res->execute();
+    }
     public static function create($user){
 
         var_dump($user);

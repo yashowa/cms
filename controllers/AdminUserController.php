@@ -79,14 +79,20 @@ $parsedQueryString=explode('/',$this->_querystring);
       continue;
     }
   }
+  /*method add
+  *role delete user
+  */
   public function add(){
       UserController::create($_POST);
       //var_dump($_POST);
       header('Location:/admin/user');
   }
+  /*method delete
+  @param userId
+  *role delete user
+  */
   public function delete($userId){
-        return('utilmisateur supprimé');
-        exit;
+        return UserController::delete($userId);
   }
   public function update($userId){
       return UserController::update($_POST,$userId);

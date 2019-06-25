@@ -81,6 +81,11 @@ select {
     background-color: #000000;
     color: #ffffff; }
 
+.popin {
+  position: absolute;
+  z-index: 5004;
+  background: blue; }
+
 body {
   font-family: Lato;
   color: #303030;
