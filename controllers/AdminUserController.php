@@ -52,6 +52,16 @@ $parsedQueryString=explode('/',$this->_querystring);
                   $params['success'] = "Mise à jour de l'utilisateur ".$user['firstname'] ."effectuée avec succès";
                 }
             }
+            elseif(count($parsedQueryString)>4 && $parsedQueryString[4]=='delete'){
+
+                $delete = $this->delete($user['id_user']);
+                if(isset($delete['errors'])){
+                    $params['errors'] = $delete['errors'];
+                }else{
+                    $params['user'] =  UserController::getUser($action);
+                    $params['success'] = "Suppression de l'utilisateur ".$user['firstname'] ."effectuée avec succès";
+                }
+            }
           $this->render('admin/user-form.php',$params);
         }
       } else {
@@ -75,7 +85,8 @@ $parsedQueryString=explode('/',$this->_querystring);
       header('Location:/admin/user');
   }
   public function delete($userId){
-
+        return('utilmisateur supprimé');
+        exit;
   }
   public function update($userId){
       return UserController::update($_POST,$userId);

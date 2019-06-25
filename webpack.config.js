@@ -2,6 +2,7 @@ const path =require('path');
 //const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var LiveReloadPlugin = require('webpack-livereload-plugin');
+const webpack =require('webpack');
 
 
 
@@ -30,7 +31,8 @@ let config = {
           ]
         },
         {
-          test: /\.(eot|svg|ttf|woff|woff2)$/, loader: 'file-loader?name=fonts/[name].[ext]'
+          test: /\.(eot|svg|ttf|woff|woff2)$/,
+           loader: 'file-loader?name=fonts/[name].[ext]'
         }
       ],
 
@@ -40,7 +42,13 @@ let config = {
     new MiniCssExtractPlugin({
       filename:"[name].css"
     }),
-    new LiveReloadPlugin()
+    new LiveReloadPlugin(),
+
+      new webpack.ProvidePlugin({
+          'window.jQuery': 'jquery',
+          'window.$': 'jquery',
+          $: 'jquery'
+      })
   ]
 }
 

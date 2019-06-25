@@ -1,6 +1,23 @@
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: normal;
+  src: url(fonts/Lato-Regular.ttf) format("truetype"); }
+
+@font-face {
+  font-family: "Lato-Bold";
+  font-style: normal;
+  font-weight: 500;
+  src: url(fonts/Lato-Bold.ttf) format("ttf"); }
+
+@font-face {
+  font-family: "Lato-Hairline";
+  font-style: normal;
+  font-weight: normal;
+  src: url(fonts/Lato-Hairline.ttf) format("ttf"); }
+
 /*Color*/
 body {
-  color: #ffffff;
   font-family: Lato; }
 
 input {
@@ -64,27 +81,9 @@ select {
     background-color: #000000;
     color: #ffffff; }
 
-@font-face {
-  font-family: "Lato";
-  font-style: normal;
-  font-weight: normal;
-  src: url(fonts/Lato-Regular.ttf) format("ttf"); }
-
-@font-face {
-  font-family: "Lato-Bold";
-  font-style: normal;
-  font-weight: 500;
-  src: url(fonts/Lato-Bold.ttf) format("ttf"); }
-
-@font-face {
-  font-family: "Lato-Hairline";
-  font-style: normal;
-  font-weight: normal;
-  src: url(fonts/Lato-Hairline.ttf) format("ttf"); }
-
 body {
   font-family: Lato;
-  color: #dadada;
+  color: #303030;
   font-style: normal; }
 
 /*Color*/

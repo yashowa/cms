@@ -24,8 +24,8 @@
                   <td><?php echo $user['lastname'] ?></td>
                   <td><?php echo $user['email'] ?></td>
                   <td>
-                    <a  class="btn btn-default" href="/admin/user/<?php echo $user['id_user'];?>">Modifier<a>
-                    <a class ="btn danger" href="delete">Supprimer<a>
+                    <a class="btn btn-default" href="/admin/user/<?php echo $user['id_user'];?>">Modifier<a>
+                    <a class ="btn danger js-delete-user" href="/admin/user/<?php echo $user['id_user'];?>/delete">Supprimer<a>
                   </td>
                 </tr>
               <?php endforeach;?>

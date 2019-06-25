@@ -5,7 +5,6 @@
   <meta charset="utf-8">
   <title><?php echo($params['page_name']);?></title>
   <link rel="stylesheet" href="/dist/main.css">
-  <script src = "/dist/main.js"></script>
 </head>
 <body>
 <?php if(isset($_SESSION['user'])):?>
