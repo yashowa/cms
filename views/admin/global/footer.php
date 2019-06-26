@@ -1,9 +1,11 @@
 <!--footer-->
 
 <div class="popin">
-  <div class="popin-header"></div>
-  <div class="popin-content"></div>
-  <div class="popin-footer"></div>
+    <div class="popin-dialog">
+      <div class="popin-header"></div>
+      <div class="popin-content"></div>
+      <div class="popin-footer"></div>
+    </div>
 </div>
 <script src = "/dist/main.js"></script>
 </body>

@@ -47,6 +47,12 @@ table {
   table th {
     padding: 7px 15px;
     border: 1px solid #dadada; }
+  table tr {
+    -webkit-transition: all ease 300ms;
+    -moz-: all ease 300ms;
+    transition: all ease 300ms; }
+    table tr:hover {
+      background: #eeeeee; }
   table td {
     border: 1px solid #dadada;
     padding: 7px 15px; }
@@ -81,10 +87,33 @@ select {
     background-color: #000000;
     color: #ffffff; }
 
+.no-scroll {
+  overflow: hidden !important; }
+
 .popin {
-  position: absolute;
-  z-index: 5004;
-  background: blue; }
+  display: none;
+  background: rgba(48, 48, 48, 0.7);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999999; }
+  .popin .popin-dialog {
+    display: block;
+    position: relative;
+    top: 20%;
+    width: 30%;
+    margin: 0  auto;
+    padding: 15px;
+    background: #ffffff;
+    box-shadow: 5px 3px 5px #303030;
+    border-radius: 5px;
+    z-index: 5004; }
+    .popin .popin-dialog.wide {
+      width: 70% !important; }
+    .popin .popin-dialog.full {
+      width: 100% !important; }
 
 body {
   font-family: Lato;

@@ -36,6 +36,14 @@ table{
         padding:7px 15px;
         border: 1px solid $gray;
   }
+  tr{
+    -webkit-transition: all ease 300ms;
+    -moz-: all ease 300ms;
+    transition: all ease 300ms;
+    &:hover{
+      background: $graylight;
+    }
+  }
   td{
     border: 1px solid $gray;
     padding: 7px 15px;
@@ -85,4 +93,12 @@ select{
    color: $white;
  }
 
+}
+
+
+
+//comportment
+
+.no-scroll{
+  overflow: hidden !important;
 }

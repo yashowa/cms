@@ -1,7 +1,7 @@
 
 <?php include('global/header.php');?>
 
-<?php var_dump($params); ?>
+<?php //var_dump($params); ?>
 
 <h1><?php echo($params['page_name']);?></h1>
 

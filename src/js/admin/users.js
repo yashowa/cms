@@ -1,52 +1,68 @@
 
 
+$(document).ready(function(){
+
+
 $('.js-delete-user').on('click',function(e){
-
-var that = $(this);
-var url = that.attr('href');
     e.preventDefault();
-$('.popin').fadeIn();
-var header="Voulez vous supprimer l'utilisateur suivant?";
-var content="?";
-var footer=document.createElement('button');
-$('.popin .popin-header').append($("h2").html(header);
-$('.popin .popin-content').append($("h2").html(content);
-$('.popin .popin-footer').append($("button").addClass('btn').on('click',function(){
-  if(url!=""){
-       $.ajax({
-           'url'   :url,
-           'type'  :'POST',
-           'data'  :'token',
-           success : function(data, statut){
-               console.log(data);
-           }
-       })
-   }
-}).html("Supprimer l\'utilisateur");
+    //$('.popin').append($('div').html('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'))
 
-$('.popin .popin-footer').append($(button).addClass('btn').on('click',function(){
-  $('.popin').fadeOut();
-}).html('Annuler')
+    var that = $(this);
+    var url = that.attr('href');
+    var header="Voulez vous supprimer l'utilisateur suivant?";
+    var content="";
+    var btnDelete = document.createElement('button');
+    var btnCancel = document.createElement('button');
+    var divHeader = document.createElement('div');
+    var divContent = document.createElement('p');
 
-    console.log('suppression');
-    var url = $(this).attr('href');
+    $('.popin').fadeIn();
+    $('body').toggleClass('no-scroll');
+    $(btnDelete).attr({
+    "class":"btn danger",
+    "href":url,
+    })
+    .html('Supprimer l\'utilisateur')
+    .on('click',function(){
+        if(url!=""){
+            $.ajax({
+                'url'   :url,
+                'type'  :'POST',
+                'data'  :'token',
+                success : function(data, statut){
+                    console.log(data);
 
-   if(url!=""){
-        $.ajax({
-            'url'   :url,
-            'type'  :'POST',
-            'data'  :'token',
-            success : function(data, statut){
-                console.log(data);
-            }
+                }
+            })
+        }
+    });
+
+    $(btnCancel).attr({
+            "class":"btn default"
         })
-    }
-    return false;
+        .html('Annuler')
+        .on('click',function() {
+            $('.popin').fadeOut('fast');
+            $('.popin-dialog .popin-header').html('');
+            $('.popin-dialog .popin-content').html('');
+            $('.popin-dialog .popin-footer').html('');
+            $('body').toggleClass('no-scroll');
+        });
+
+    $(divHeader).html(header);
+    $(divContent).html(content);
+
+    $('.popin-dialog .popin-header').append(divHeader);
+    $('.popin-dialog .popin-content').append(divContent);
+    $('.popin-dialog .popin-footer').append(btnDelete);
+    $('.popin-dialog .popin-footer').append(btnCancel);
+
+
+        console.log('suppression');
+
+    })
+
 })
-
-
-
-
 function remove(userId){
 
 

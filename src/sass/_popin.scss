@@ -1,5 +1,29 @@
 .popin{
-  position: absolute;
-  z-index: 5004;
-  background: blue
+  display: none;
+  background: rgba($graydark,0.7);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999999;
+  .popin-dialog{
+    display: block;
+    position: relative;
+    top: 20%;
+    width:30% ;
+    margin: 0  auto;
+    padding: 15px;
+    background: $white;
+    box-shadow: 5px 3px 5px $graydark;
+    border-radius: 5px;
+    z-index: 5004;
+    &.wide {
+      width: 70% !important;
+    }
+    &.full {
+      width: 100% !important;
+    }
+  }
+
 }

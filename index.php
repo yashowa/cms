@@ -51,7 +51,7 @@ $controllerFile = $controllerName.'.php';
 //echo $action;
 //echo'lllllllllllllllllll';
 
-  var_dump($controllerName);
+  //var_dump($controllerName);
 
 
   $app = new $controllerName() ;//or die("error 404");

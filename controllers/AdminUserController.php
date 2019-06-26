@@ -13,9 +13,9 @@ $parsedQueryString=explode('/',$this->_querystring);
       $alias =explode('/',$this->_querystring)[2];
 
       $pageDatas = $this->getPageInfosFromAlias($alias);
-      echo"<pre>";
+     /* echo"<pre>";
       var_dump($pageDatas);
-      echo "</pre>";
+      echo "</pre>";*/
 
       $params=array(
         'page_name'=>$pageDatas->name,
@@ -55,11 +55,14 @@ $parsedQueryString=explode('/',$this->_querystring);
             elseif(count($parsedQueryString)>4 && $parsedQueryString[4]=='delete'){
 
                 $delete = $this->delete($user['id_user']);
+
                 if(isset($delete['errors'])){
-                    $params['errors'] = $delete['errors'];
+                  return  json_encode($delete['errors']);
                 }else{
+
                     $params['user'] =  UserController::getUser($action);
                     $params['success'] = "Suppression de l'utilisateur ".$user['firstname'] ."effectuée avec succès";
+                    return  json_encode($params);
                 }
             }
           $this->render('admin/user-form.php',$params);
