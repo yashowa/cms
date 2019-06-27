@@ -96,9 +96,33 @@ select{
 }
 
 
-
 //comportment
 
 .no-scroll{
   overflow: hidden !important;
+}
+
+//animation
+
+.fadeOut{
+  animation:fadeOut 3s ease-in-out;
+  -webkit-animation:fadeOut 3s ease-in-out;
+  -moz-animation:fadeOut 3s ease-in-out;
+  display: block !important;
+}
+
+
+@keyframes fadeOut {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

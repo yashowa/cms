@@ -7,14 +7,25 @@
   <link rel="stylesheet" href="/dist/main.css">
 </head>
 <body>
+<p class="notification-bar <?php if(isset($params['success'])): ?>fadeOut success<?php elseif(isset($params['errors'])):?> fadeOut danger<?php endif;?>" id="notification-bar">
+    <?php if(isset($params['success'])): ?>
+        <?php  echo $params['success']; ?>
+    <?php elseif(isset($params['errors'])):?>
+        <?php echo $params['errors']; ?>
+    <?php endif;?>
+</p>
 <?php if(isset($_SESSION['user'])):?>
     <p><?php if(isset($_SESSION['user'])) echo "bonjour, ".$_SESSION['user']->firstname;?><a href="/admin/logout"> Déconnexion</a></p>
 <?php endif ?>
-<nav id="menu-navigation-admin">  <ul>
+
+<?php if(isset($params['routes'])):?>
+<nav id="menu-navigation-admin">
+    <ul>
     <?php foreach($params['routes'] as $route): ?>
         <li><a href="/admin/<?php echo $route->alias; ?>"><?php echo $route->name; ?></a></li>
     <?php endforeach; ?>
-  </ul>
+    </ul>
 </nav>
+<?php endif ?>
 
 <!--header end -->

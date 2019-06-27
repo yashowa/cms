@@ -64,9 +64,9 @@ class AdminController extends BaseController
     if(isset($email)&& $email!='' && isset($passwd) & $passwd!=''){
           $sql="SELECT * FROM deb_users WHERE email='$email'";
       //AND passwd='".$this->encrypt($passwd)."'";
-        echo $sql;
+       /* echo $sql;
           echo "<br>";
-
+*/
        //echo "<br>".md5($this->encrypt($passwd,KEY_PWD));
 
           $co = Connection::getInstance()->query($sql);
@@ -77,19 +77,19 @@ class AdminController extends BaseController
       echo"</pre>";*/
           if($result && password_verify($passwd,$result->passwd)){
               //if(count($result)>0){}
-              echo "success";
+             // echo "success";
               $_SESSION['user'] = $result;
               header('Location:/admin/dashboard');
           }else{
             $error ="erreur de connexion, login ou mot de passe erronné";
             $params['error'][]=$error;
             trigger_error('Connexion failed');
-                     $this->render('admin/form-login.php',$params);
+             $this->render('admin/form-login.php',$params);
           }
     }else{
-      /*      echo"<pre>";
-      var_dump($params);
-            echo"</pre>";*/
+        /*      echo"<pre>";
+        var_dump($params);
+        echo"</pre>";*/
          $this->render('admin/form-login.php',$params);
     }
   }

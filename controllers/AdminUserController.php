@@ -8,7 +8,9 @@ role gestion and crud of users admin in website
 class AdminUserController extends BaseController{
 
   public function index(){
-$parsedQueryString=explode('/',$this->_querystring);
+
+
+      $parsedQueryString=explode('/',$this->_querystring);
 
       $alias =explode('/',$this->_querystring)[2];
 
@@ -49,7 +51,7 @@ $parsedQueryString=explode('/',$this->_querystring);
                   $params['errors'] = $update['errors'];
                 }else{
                   $params['user'] =  UserController::getUser($action);
-                  $params['success'] = "Mise à jour de l'utilisateur ".$user['firstname'] ."effectuée avec succès";
+                  $params['success'] = "Mise à jour de l'utilisateur ".$user['firstname'] ." effectuée avec succès";
                 }
             }
             elseif(count($parsedQueryString)>4 && $parsedQueryString[4]=='delete'){
@@ -57,19 +59,20 @@ $parsedQueryString=explode('/',$this->_querystring);
                 $delete = $this->delete($user['id_user']);
 
                 if(isset($delete['errors'])){
-                  return  json_encode($delete['errors']);
+                 echo json_encode($delete['errors']);
+
                 }else{
 
                     $params['user'] =  UserController::getUser($action);
-                    $params['success'] = "Suppression de l'utilisateur ".$user['firstname'] ."effectuée avec succès";
-                    return  json_encode($params);
+                    $params['success'] = "Suppression de l'utilisateur ".$user['firstname'] ." effectuée avec succès";
+                    echo json_encode($params);
                 }
+                exit;
             }
           $this->render('admin/user-form.php',$params);
         }
       } else {
         $this->render('admin/users.php',$params);
-        echo'ok';
       }
   }
 

@@ -18,7 +18,7 @@
     <tbody>
       <?php if(count($params['users'])>0):?>
               <?php foreach ($params['users'] as $key => $user):?>
-                <tr>
+                <tr id="user-<?php echo $user['id_user']; ?>">
                   <td><?php echo $user['id_user'] ?></td>
                   <td><?php echo $user['firstname'] ?></td>
                   <td><?php echo $user['lastname'] ?></td>

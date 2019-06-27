@@ -7,8 +7,9 @@
   <link rel="stylesheet" href="/dist/main.css">
   
 </head>
-<body>
+<body>    <?php if(isset($params['routes'])):?>
 <nav id="menu-navigation">
+
 
   <ul>
     <?php foreach($params['routes'] as $route): ?>
@@ -17,4 +18,5 @@
   </ul>
 </nav>
 
+<?php endif; ?>
 <!--header end -->

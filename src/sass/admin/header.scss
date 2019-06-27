@@ -2,4 +2,11 @@ body{
   font-family:Lato;
   color:$graydark;
   font-style: normal;
+
+  #notification-bar{
+    padding: 15px;
+   display: none;
+  }
 }
+
+

@@ -90,6 +90,22 @@ select {
 .no-scroll {
   overflow: hidden !important; }
 
+.fadeOut {
+  animation: fadeOut 3s ease-in-out;
+  -webkit-animation: fadeOut 3s ease-in-out;
+  -moz-animation: fadeOut 3s ease-in-out;
+  display: block !important; }
+
+@keyframes fadeOut {
+  0% {
+    opacity: 0; }
+  10% {
+    opacity: 1; }
+  80% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+
 .popin {
   display: none;
   background: rgba(48, 48, 48, 0.7);
@@ -119,6 +135,9 @@ body {
   font-family: Lato;
   color: #303030;
   font-style: normal; }
+  body #notification-bar {
+    padding: 15px;
+    display: none; }
 
 /*Color*/
 #menu-navigation-admin ul {
