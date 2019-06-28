@@ -11,9 +11,14 @@
     <?php if(isset($params['success'])): ?>
         <?php  echo $params['success']; ?>
     <?php elseif(isset($params['errors'])):?>
-        <?php echo $params['errors']; ?>
+      <ul class="danger">
+      <?php foreach($params['errors'] as $error): ?>
+        <li><?php echo $error;?></li>
+      <?php endforeach; ?>
+      </ul>
     <?php endif;?>
 </p>
+
 <?php if(isset($_SESSION['user'])):?>
     <p><?php if(isset($_SESSION['user'])) echo "bonjour, ".$_SESSION['user']->firstname;?><a href="/admin/logout"> Déconnexion</a></p>
 <?php endif ?>

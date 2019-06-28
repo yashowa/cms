@@ -4,13 +4,7 @@
 
 
 
-<?php if(isset($params['errors'])):?>
-  <ul class="danger">
-  <?php foreach($params['errors'] as $error): ?>
-    <li><?php echo $error;?></li>
-  <?php endforeach; ?>
-  </ul>
-<?php endif; ?>
+
 
 <?php if(isset($params['success'])):?>
     <p class="success"><?php echo $params['success'];?></p>
@@ -27,6 +21,6 @@
     <option value="2" <?php if(isset($params['user']) && $params['user']['id_profile']=='2')echo "selected";?>>Super Administrateur</option>
     <option value="3" <?php if(isset($params['user']) && $params['user']['id_profile']=='3')echo "selected";?> >Consultation</option>
   </select>
-  <button type="submit" class="success"><?php echo $params['submit'];?></button>
+  <button type="submit" class="success <?php echo(isset($params['user'])?js-update-user:"js-create-user");?>"><?php echo $params['submit'];?></button>
 </form>
 <?php include('global/footer.php');?>

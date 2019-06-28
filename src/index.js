@@ -1,11 +1,8 @@
 console.log('ok')
 import css from './sass/style.scss';
-
-//console.log(css)
-
+//import DataFormat from './js/features/DataFormat';
+//require ('./js/features/DataFormat.js');
 require ('./js/admin/users.js');
-
-
 
 
 $(document).on('ready',function(){

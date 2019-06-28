@@ -1,4 +1,5 @@
 
+require ('./js/features/DataFormat.js');
 
 $(document).ready(function(){
 
@@ -100,7 +101,58 @@ resetModal();
     },3000);
 
 
+/*check datas from form user*/
+    $("#form-user").on('submit',function(e){
+        e.preventDefault();
+        var errors=[];
+        var firstname=$("input[name='firstname']").val();
+        var lastname=$("input[name='lastname']").val();
+        var email=$("input[name='email']").val();
+        var email=$("input[name='email']").val();
+        var profile=$("select[name='profile']").val()
+
+        if(!DataFormat.isValid(firstname,"name")){
+          errors[]={
+            input:"firstname",
+            msg:"Format de Prénom incorrect"
+          }
+        }
+        if(!DataFormat.isValid(lastname,"name")){
+          errors[]={
+            input:"lastname",
+            msg:"Format de nom de famille incorrect"
+          }
+        }
+        if(!DataFormat.isValid(email,"email")){
+          errors[]={
+            input:"email",
+            msg:"Format d'email incorrect"
+          }
+        }
+        if(!DataFormat.isValid(password,"password")){
+          errors[]={
+            input:"password",
+            msg:"Format de Mot de passe incorrect (celui-ci doit comporter au moins 4 caractères alphanumériques)"
+          }
+        }
+        if(profile==0)){
+          errors[]={
+            input:"profile",
+            msg:"Vous navez pas sélectionné de profil"
+          }
+        }
+        console.log(errors);
+        return false;
+    })
 })
+
+/*create user btn*/
+
+
+
+
+
+
 function remove(userId){
 
 
