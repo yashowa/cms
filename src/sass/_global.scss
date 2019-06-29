@@ -1,4 +1,25 @@
 
+//ANIMATIONS
+@keyframes fadeOut {
+  0% {
+    opacity: 0;
+    height:auto;
+    overflow: auto;
+  }
+  10% {
+    opacity: 1;
+        height:auto;
+  }
+  80% {
+    opacity: 1;
+        height:auto;
+  }
+  100% {
+    opacity: 0;
+    height: 0;
+  }
+}
+
 body{
   font-family: Lato;
 }
@@ -105,24 +126,30 @@ select{
 //animation
 
 .fadeOut{
-  animation:fadeOut 3s ease-in-out;
-  -webkit-animation:fadeOut 3s ease-in-out;
-  -moz-animation:fadeOut 3s ease-in-out;
   display: block !important;
+  animation:fadeOut 5000ms ease-in-out;
+  -webkit-animation:fadeOut 5000ms ease-in-out;
+  -moz-animation:fadeOut 5000ms ease-in-out;
+  opacity: 0;
+
+  overflow: hidden;
+  padding: 0 !important;
+      height:0;
 }
 
 
-@keyframes fadeOut {
-  0% {
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
+
+#notification-bar{
+  .js-close-notification{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+          content: " X ";
+    width: auto;
+    color: $white;
+    &::before{
+      content: " X ";
+      font-weight:bold;
+    }
   }
 }

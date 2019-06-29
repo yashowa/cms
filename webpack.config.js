@@ -5,7 +5,6 @@ var LiveReloadPlugin = require('webpack-livereload-plugin');
 const webpack =require('webpack');
 
 
-
 let config = {
   entry: "./src/index.js",
   output: {
@@ -14,6 +13,16 @@ let config = {
   },
   module: {
       rules: [
+        {
+          test: /\.m?js$/,
+          exclude: /(node_modules|bower_components)/,
+          use: {
+              loader:'babel-loader',
+              options:{
+                presets: ['@babel/preset-env']
+              }
+          }
+        },
         {
           test: /\.scss$/,
           use: [

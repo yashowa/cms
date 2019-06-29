@@ -1,5 +1,4 @@
-
-require ('./js/features/DataFormat.js');
+var DataFormat= require('../features/DataFormat');
 
 $(document).ready(function(){
 
@@ -95,11 +94,6 @@ resetModal();
     })
 
 
-    setTimeout(function(){
-        $('#notification-bar').fadeOut();
-        $('#notification-bar').removeClass("success fadeOut");
-    },3000);
-
 
 /*check datas from form user*/
     $("#form-user").on('submit',function(e){
@@ -108,40 +102,67 @@ resetModal();
         var firstname=$("input[name='firstname']").val();
         var lastname=$("input[name='lastname']").val();
         var email=$("input[name='email']").val();
-        var email=$("input[name='email']").val();
+        var password=$("input[name='password']").val();
         var profile=$("select[name='profile']").val()
 
         if(!DataFormat.isValid(firstname,"name")){
-          errors[]={
+          errors.push({
             input:"firstname",
             msg:"Format de Prénom incorrect"
-          }
+          })
         }
         if(!DataFormat.isValid(lastname,"name")){
-          errors[]={
+          errors.push({
             input:"lastname",
             msg:"Format de nom de famille incorrect"
-          }
+          })
         }
         if(!DataFormat.isValid(email,"email")){
-          errors[]={
+          errors.push({
             input:"email",
             msg:"Format d'email incorrect"
-          }
+          })
         }
         if(!DataFormat.isValid(password,"password")){
-          errors[]={
+          errors.push({
             input:"password",
             msg:"Format de Mot de passe incorrect (celui-ci doit comporter au moins 4 caractères alphanumériques)"
-          }
+          })
         }
-        if(profile==0)){
-          errors[]={
+        if(profile==0)  {
+          errors.push({
             input:"profile",
             msg:"Vous navez pas sélectionné de profil"
-          }
+          })
         }
-        console.log(errors);
+
+        if(errors.length>0){
+          var a =document.createElement('a');
+            $('#notification-bar').html('').append($(a).addClass('js-close-notification').on('click',function(e){
+              e.preventDefault();
+              console.log('i')
+              $('#notification-bar').fadeOut();
+            })
+            );
+            var ul = document.createElement('ul');
+          $.each(errors,function(k,v){
+
+              var li = document.createElement('li');
+              $(li).append(v.msg);
+              $(ul).append($(li));
+
+          })
+
+          $('#notification-bar').addClass('danger').append($(ul)).css('display','block');
+
+          /*$('#notification-bar').append($)*/
+          /*setTimeout(function(){
+                $('#notification-bar').removeClass("danger fadeOut");
+                $('#notification-bar')html('');
+
+            },3000);*/
+          }
+        //console.log(errors);
         return false;
     })
 })

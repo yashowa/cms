@@ -3,7 +3,7 @@ var DataFormat={
   isValid: function(val,format){
       switch(format){
         case 'name':
-        var regexp = /^[A-Za-báàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ._\s-]{*}$/;
+        var regexp = /^[a-zA-ZàáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ\s]{2,40}$/i;
         break;
         case 'email':
         var regexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -14,11 +14,13 @@ var DataFormat={
         default:
         return true;
         break;
-        if(!regexp.test(val)){
-            return false;
-        }
-        return true;
       }
-  }
+      if(!regexp.test(val)){
+          return false;
+      }
+
+      return true;
+  },
+  name:"DataFormat"
 }
-//export DataFormat as DataFormat;
+module.exports =  DataFormat;

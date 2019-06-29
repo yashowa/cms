@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="/dist/main.css">
 </head>
 <body>
-<p class="notification-bar <?php if(isset($params['success'])): ?>fadeOut success<?php elseif(isset($params['errors'])):?> fadeOut danger<?php endif;?>" id="notification-bar">
+<div class="notification-bar <?php if(isset($params['success'])): ?>fadeOut success<?php elseif(isset($params['errors'])):?> fadeOut danger<?php endif;?>" id="notification-bar">
     <?php if(isset($params['success'])): ?>
         <?php  echo $params['success']; ?>
     <?php elseif(isset($params['errors'])):?>
@@ -17,7 +17,8 @@
       <?php endforeach; ?>
       </ul>
     <?php endif;?>
-</p>
+
+</div>
 
 <?php if(isset($_SESSION['user'])):?>
     <p><?php if(isset($_SESSION['user'])) echo "bonjour, ".$_SESSION['user']->firstname;?><a href="/admin/logout"> Déconnexion</a></p>
