@@ -78,15 +78,17 @@ class AdminUserController extends BaseController{
           $this->render('admin/user-form.php',$params);
         }
       } else {
-                $this->render('admin/users.php',$params);
         if(isset($_SESSION['notification']) && isset($_SESSION["notification_count"])){
-          if($_SESSION["notification_count"]==0){
-            unset($_SESSION["notification"]);
-            unset($_SESSION["notification_count"]);
-          }
-          if($_SESSION["notification_count"]>=1)
-          $_SESSION["notification_count"] =  $_SESSION["notification_count"] -1;
+            if($_SESSION["notification_count"]==0){
+                unset($_SESSION["notification"]);
+                unset($_SESSION["notification_count"]);
+            }
+            if($_SESSION["notification_count"]>=1)
+                $_SESSION["notification_count"] =  $_SESSION["notification_count"] -1;
         }
+
+        $this->render('admin/users.php',$params);
+
 
 
 
