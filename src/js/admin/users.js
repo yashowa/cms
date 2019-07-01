@@ -3,6 +3,8 @@ var DataFormat= require('../features/DataFormat');
 $(document).ready(function(){
 
 
+document.cookie = "notification=; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
+
 $('.js-delete-user').on('click',function(e){
     e.preventDefault();
     //$('.popin').append($('div').html('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'))
@@ -77,7 +79,7 @@ $('.js-delete-user').on('click',function(e){
         })
         .html('Annuler')
         .on('click',function() {
-resetModal();
+            resetModal();
         });
 
     $(divHeader).html(header);
@@ -95,9 +97,13 @@ resetModal();
 
 
 
-/*check datas from form user*/
+
     $("#form-user").on('submit',function(e){
-        e.preventDefault();
+
+      e.preventDefault();
+
+        var url = $(this).attr('action')
+        console.log(url)
         var errors=[];
         var firstname=$("input[name='firstname']").val();
         var lastname=$("input[name='lastname']").val();
@@ -146,25 +152,107 @@ resetModal();
             );
             var ul = document.createElement('ul');
           $.each(errors,function(k,v){
-
               var li = document.createElement('li');
               $(li).append(v.msg);
               $(ul).append($(li));
-
           })
-
           $('#notification-bar').addClass('danger').append($(ul)).css('display','block');
+        }else{
+         e.currentTarget.submit();
 
-          /*$('#notification-bar').append($)*/
-          /*setTimeout(function(){
-                $('#notification-bar').removeClass("danger fadeOut");
-                $('#notification-bar')html('');
+      /*  var dataTosend={
+             firstname:$("input[name='firstname']").val(),
+             lastname:$("input[name='lastname']").val(),
+             email:$("input[name='email']").val(),
+             password:$("input[name='password']").val(),
+             profile:$("select[name='profile']").val(),
+        }
+        $.ajax({
+          url   :url,
+          type  :'POST',
+          data  :dataTosend,
+          dataType:'json',
+          success : function(data){
+              console.log(data)
+              console.log(data.message)
 
-            },3000);*/
-          }
-        //console.log(errors);
-        return false;
+
+              var msg, className;
+              try{
+
+                  //try to parse JSON
+                  //var encodedJson = $.parseJSON(data);
+
+                  if(data.message!=""){
+                      msg = data.message;
+                      className='success';
+                  }else{
+                      msg = data.error;
+                      className='danger';
+                  }
+              }catch(error){
+                  className='danger';
+                  msg='une erreur est survenue, format de données incorrectes depuis le serveur';
+              }
+
+document.cookie='notification='+JSON.stringify(data);
+
+window.location ="/admin/user"
+
+              $("#notification-bar").css('display','block !important');
+              $('#notification-bar').addClass(className + " fadeOut").html(msg);
+              setTimeout(function(){
+                  $('#notification-bar').fadeOut();
+                  $('#notification-bar').removeClass(className+" fadeOut");
+              },3000);
+              clearTimeout();
+            }
+        })*/
+      }
     })
+
+
+
+/*check datas from form user*/
+
+
+
+
+//console.log(document.cookie.notifications);
+/*console.log(document.cookie)
+var notification = JSON.parse(document.cookie);
+
+var msg, className;
+try{
+
+    //try to parse JSON
+    //var encodedJson = $.parseJSON(data);
+
+    if(notification.message!=""){
+        msg = notification.message;
+        className='success';
+    }else{
+        msg = notification.error;
+        className='danger';
+    }
+}catch(error){
+    className='danger';
+    msg='une erreur est survenue, format de données incorrectes depuis le serveur';
+}
+$("#notification-bar").css('display','block !important');
+$('#notification-bar').addClass(className + " fadeOut").html(msg);
+setTimeout(function(){
+    $('#notification-bar').fadeOut();
+    $('#notification-bar').removeClass(className+" fadeOut");
+},3000);
+clearTimeout();
+
+
+
+
+
+document.cookie = "notification=; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
+*/
 })
 
 /*create user btn*/

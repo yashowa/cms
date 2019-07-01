@@ -7,8 +7,9 @@ role gestion and crud of users admin in website
 */
 class AdminUserController extends BaseController{
 
-  public function index(){
+  public $params;
 
+  public function index(){
 
       $parsedQueryString=explode('/',$this->_querystring);
 
@@ -31,10 +32,13 @@ class AdminUserController extends BaseController{
     //var_dump($alias);
         if(method_exists($this,$action)){
           $this->$action();
-        }elseif ($action=="new") {
+          $params['errors']="non";
+        }elseif ($action=="new") {// mode create user
           $params['page_name']="Nouvel utilisateur";
           $params['submit']="Ajouter l'utilisateur";
           $params['url'] = "/admin/user/add";
+          unset($_SESSION["notification"]);
+          unset($_SESSION["notification_count"]);
           $this->render('/admin/user-form.php',$params);
         }elseif ($action =="edit" || (int)$action!=0) {// si l'action est un userid on passe en mode edition de l'user
 
@@ -53,6 +57,8 @@ class AdminUserController extends BaseController{
                   $params['user'] =  UserController::getUser($action);
                   $params['success'] = "Mise à jour de l'utilisateur ".$user['firstname'] ." effectuée avec succès";
                 }
+                unset($_SESSION["notification"]);
+                unset($_SESSION["notification_count"]);
             }
             elseif(count($parsedQueryString)>4 && $parsedQueryString[4]=='delete'){
 
@@ -72,7 +78,18 @@ class AdminUserController extends BaseController{
           $this->render('admin/user-form.php',$params);
         }
       } else {
-        $this->render('admin/users.php',$params);
+                $this->render('admin/users.php',$params);
+        if(isset($_SESSION['notification']) && isset($_SESSION["notification_count"])){
+          if($_SESSION["notification_count"]==0){
+            unset($_SESSION["notification"]);
+            unset($_SESSION["notification_count"]);
+          }
+          if($_SESSION["notification_count"]>=1)
+          $_SESSION["notification_count"] =  $_SESSION["notification_count"] -1;
+        }
+
+
+
       }
   }
 
@@ -89,9 +106,13 @@ class AdminUserController extends BaseController{
   *role delete user
   */
   public function add(){
-      UserController::create($_POST);
-      //var_dump($_POST);
+//    echo json_encode(UserController::create($_POST));
+
+      $_SESSION["notification"]=UserController::create($_POST);
+      $_SESSION["notification_count"]=1;
       header('Location:/admin/user');
+
+
   }
   /*method delete
   @param userId
@@ -99,9 +120,12 @@ class AdminUserController extends BaseController{
   */
   public function delete($userId){
         return UserController::delete($userId);
+
   }
   public function update($userId){
-      return UserController::update($_POST,$userId);
+        $_SESSION["notification"]= UserController::update($_POST,$userId);
+              $_SESSION["notification_count"]=1;
+            header('Location:/admin/user');
   }
 }
 
