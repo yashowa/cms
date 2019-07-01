@@ -47,6 +47,13 @@ class AdminUserController extends BaseController{
             $params['submit']=$params['page_name'];
             $params['user'] = $user;
             $params['url'] = "/admin/user/".$user['id_user']."/update";
+            if(isset($_SESSION['notification']) && isset($_SESSION["notification_count"])){
+              if($_SESSION["notification_count"]==0){
+                  unset($_SESSION["notification"]);
+                  unset($_SESSION["notification_count"]);
+              }
+            }
+
 
             if(count($parsedQueryString)>4 && $parsedQueryString[4]=='update'){
 
@@ -57,10 +64,16 @@ class AdminUserController extends BaseController{
                   $params['user'] =  UserController::getUser($action);
                   $params['success'] = "Mise à jour de l'utilisateur ".$user['firstname'] ." effectuée avec succès";
                 }
-                unset($_SESSION["notification"]);
-                unset($_SESSION["notification_count"]);
+                if($_SESSION["notification_count"]==0){
+                    unset($_SESSION["notification"]);
+                    unset($_SESSION["notification_count"]);
+                }
             }
             elseif(count($parsedQueryString)>4 && $parsedQueryString[4]=='delete'){
+
+
+                    unset($_SESSION["notification"]);
+                    unset($_SESSION["notification_count"]);
 
                 $delete = $this->delete($user['id_user']);
 
@@ -82,8 +95,7 @@ class AdminUserController extends BaseController{
             if($_SESSION["notification_count"]==0){
                 unset($_SESSION["notification"]);
                 unset($_SESSION["notification_count"]);
-            }
-            if($_SESSION["notification_count"]>=1)
+            }elseif($_SESSION["notification_count"]>=1)
                 $_SESSION["notification_count"] =  $_SESSION["notification_count"] -1;
         }
 

@@ -27,10 +27,12 @@
     height: auto; }
   80% {
     opacity: 1;
-    height: auto; }
+    height: auto;
+    padding: 15px; }
   100% {
     opacity: 0;
-    height: 0; } }
+    height: 0;
+    padding: 0; } }
 
 body {
   font-family: Lato; }
@@ -112,7 +114,7 @@ select {
   -moz-animation: fadeOut 5000ms ease-in-out;
   opacity: 0;
   overflow: hidden;
-  padding: 0 !important;
+  padding: 15px;
   height: 0; }
 
 #notification-bar .js-close-notification {

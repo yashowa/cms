@@ -109,7 +109,9 @@ $('.js-delete-user').on('click',function(e){
         var lastname=$("input[name='lastname']").val();
         var email=$("input[name='email']").val();
         var password=$("input[name='password']").val();
-        var profile=$("select[name='profile']").val()
+        var profile=$("#profile").find('option:selected').val()
+        console.log(profile,"oko");
+
 
         if(!DataFormat.isValid(firstname,"name")){
           errors.push({
@@ -135,7 +137,7 @@ $('.js-delete-user').on('click',function(e){
             msg:"Format de Mot de passe incorrect (celui-ci doit comporter au moins 4 caractères alphanumériques)"
           })
         }
-        if(profile==0)  {
+        if(profile==0 ||  profile==null || profile=='')  {
           errors.push({
             input:"profile",
             msg:"Vous navez pas sélectionné de profil"
