@@ -22,4 +22,17 @@ class PageController extends BaseController
       continue;
     }
   }
+  public static function getList(){
+      $list = array();
+      $result = Connection::getInstance()->prepare('SELECT id, name,alias,published FROM deb_page');
+      $result->execute();
+
+      while ($row = $result->fetch()) {
+          $list[] = $row;
+      }
+      if (!$list) {
+          die ('problème de connexion');
+      }
+      return $list;
+  }
 }
