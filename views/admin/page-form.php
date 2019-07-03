@@ -10,17 +10,17 @@
     <p class="success"><?php echo $params['success'];?></p>
 <?php endif; ?>
 
-<form id="form-user" method="post" action="<?php echo $params['url'];?>">
-  <input type="text" name="lastname" placeholder="Nom" value="<?php echo(isset($params['user'])?$params['user']['lastname']:"");?>"/>
-  <input type="text" name="firstname" placeholder="Prénom" value="<?php echo(isset($params['user'])?$params['user']['firstname']:"");?>"/>
-  <input type="mail" name="email" placeholder="Adresse E-mail" value="<?php echo(isset($params['user'])?$params['user']['email']:"");?>"/>
-  <input type="password" name="password" placeholder="Mot de passe" value="<?php echo(isset($params['user'])?$params['user']['passwd']:"");?>"/>
+<form id="form-page" method="post" action="<?php echo $params['url'];?>">
+  <input type="text" name="name" placeholder="Titre de la page" value="<?php echo(isset($params['page'])?$params['page']['name']:"");?>"/>
+  <input type="text" name="alias" placeholder="Alias" value="<?php echo(isset($params['page'])?$params['page']['alias']:"");?>"/>
+<textarea id="form-page-content"></textarea>
+
   <select name="profile" id="profile">
-    <option value=""  <?php if(!isset($params['user'])) echo"selected disabled hidden";?>>Sélection du rôle</option>
-    <option value="1" <?php if(isset($params['user']) && $params['user']['id_profile']=='1')echo "selected";?>>Administrateur</option>
-    <option value="2" <?php if(isset($params['user']) && $params['user']['id_profile']=='2')echo "selected";?>>Super Administrateur</option>
-    <option value="3" <?php if(isset($params['user']) && $params['user']['id_profile']=='3')echo "selected";?> >Consultation</option>
+    <option value=""  <?php if(!isset($params['page'])) echo"selected disabled hidden";?>>Etat de la page</option>
+    <option value="1" <?php if(isset($params['page']) && $params['page']['published']=='1')echo "selected";?>>publiée</option>
+    <option value="2" <?php if(isset($params['page']) && $params['page']['published']=='0')echo "selected";?>>inactive</option>
   </select>
-  <button type="submit" class="success <?php echo(isset($params['user'])?js-update-user:"js-create-user");?>"><?php echo $params['submit'];?></button>
+  <button type="submit" class="success <?php echo(isset($params['page'])?js-update-page:"js-create-page");?>"><?php echo $params['submit'];?></button>
 </form>
+
 <?php include('global/footer.php');?>

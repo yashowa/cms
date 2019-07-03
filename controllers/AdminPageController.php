@@ -34,19 +34,19 @@ class AdminPageController extends BaseController{
           $this->$action();
           $params['errors']="non";
         }elseif ($action=="new") {// mode create user
-          $params['page_name']="Nouvele page";
+          $params['page_name']="Nouvelle page";
           $params['submit']="Ajouter la page";
           $params['url'] = "/admin/page/add";
           unset($_SESSION["notification"]);
           unset($_SESSION["notification_count"]);
-          $this->render('/admin/user-form.php',$params);
+          $this->render('/admin/page-form.php',$params);
         }elseif ($action =="edit" || (int)$action!=0) {// si l'action est un userid on passe en mode edition de l'user
 
             $page = PageController::getPage($action);
             $params['page_name']="Modifier la page";
             $params['submit']=$params['page_name'];
-            $params['user'] = $user;
-            $params['url'] = "/admin/page/".$user['id']."/update";
+            $params['page'] = $page;
+            $params['url'] = "/admin/page/".$page['id']."/update";
             if(isset($_SESSION['notification']) && isset($_SESSION["notification_count"])){
               if($_SESSION["notification_count"]==0){
                   unset($_SESSION["notification"]);
@@ -62,7 +62,7 @@ class AdminPageController extends BaseController{
                   $params['errors'] = $update['errors'];
                 }else{
                   $params['page'] =  PageController::getPage($action);
-                  $params['success'] = "Mise à jour de la page ".$user['firstname'] ." effectuée avec succès";
+                  $params['success'] = "Mise à jour de la page ".$page['name'] ." effectuée avec succès";
                 }
                 if($_SESSION["notification_count"]==0){
                     unset($_SESSION["notification"]);
@@ -83,7 +83,7 @@ class AdminPageController extends BaseController{
                 }else{
 
                     $params['user'] =  PageController::getPage($action);
-                    $params['success'] = "Suppression de la page ".$user['firstname'] ." effectuée avec succès";
+                    $params['success'] = "Suppression de la page ".$page['name'] ." effectuée avec succès";
                     echo json_encode($params);
                 }
                 exit;

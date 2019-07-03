@@ -6,6 +6,7 @@
   <title><?php echo($params['page_name']);?></title>
   <link rel="stylesheet" href="/dist/main.css">
 </head>
+
 <body>
   <pre>
 <?php var_dump($_SESSION);?>
@@ -50,6 +51,10 @@
 
 
 <?php if(isset($_SESSION['user'])):?>
+<nav id="nav-infos-admin">
+    <div id="logo-admin"></div>
+    <ul><li><a href="/" target="_blank">Aller sur le site</a></li></ul>
+</nav>
     <p><?php if(isset($_SESSION['user'])) echo "bonjour, ".$_SESSION['user']->firstname;?><a href="/admin/logout"> Déconnexion</a></p>
 <?php endif ?>
 
