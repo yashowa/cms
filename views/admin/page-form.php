@@ -15,7 +15,7 @@
   <input type="text" name="alias" placeholder="Alias" value="<?php echo(isset($params['page'])?$params['page']['alias']:"");?>"/>
 <textarea id="form-page-content"></textarea>
 
-  <select name="profile" id="profile">
+  <select name="published" id="published">
     <option value=""  <?php if(!isset($params['page'])) echo"selected disabled hidden";?>>Etat de la page</option>
     <option value="1" <?php if(isset($params['page']) && $params['page']['published']=='1')echo "selected";?>>publiée</option>
     <option value="2" <?php if(isset($params['page']) && $params['page']['published']=='0')echo "selected";?>>inactive</option>

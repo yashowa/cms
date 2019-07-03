@@ -2,8 +2,8 @@
 
 
 /*
-class AdminUserController
-role gestion and crud of users admin in website
+class AdminPageController
+role gestion and crud of pages admin in website
 */
 class AdminPageController extends BaseController{
 
@@ -33,14 +33,14 @@ class AdminPageController extends BaseController{
         if(method_exists($this,$action)){
           $this->$action();
           $params['errors']="non";
-        }elseif ($action=="new") {// mode create user
+        }elseif ($action=="new") {// mode create page
           $params['page_name']="Nouvelle page";
           $params['submit']="Ajouter la page";
           $params['url'] = "/admin/page/add";
           unset($_SESSION["notification"]);
           unset($_SESSION["notification_count"]);
           $this->render('/admin/page-form.php',$params);
-        }elseif ($action =="edit" || (int)$action!=0) {// si l'action est un userid on passe en mode edition de l'user
+        }elseif ($action =="edit" || (int)$action!=0) {// si l'action est un pageid on passe en mode edition de la page
 
             $page = PageController::getPage($action);
             $params['page_name']="Modifier la page";
@@ -82,7 +82,7 @@ class AdminPageController extends BaseController{
 
                 }else{
 
-                    $params['user'] =  PageController::getPage($action);
+                    $params['page'] =  PageController::getPage($action);
                     $params['success'] = "Suppression de la page ".$page['name'] ." effectuée avec succès";
                     echo json_encode($params);
                 }
@@ -117,27 +117,27 @@ class AdminPageController extends BaseController{
     }
   }
   /*method add
-  *role delete user
+  *role delete page
   */
   public function add(){
-//    echo json_encode(UserController::create($_POST));
+//    echo json_encode(PageController::create($_POST));
 
-      $_SESSION["notification"]=UserController::create($_POST);
+      $_SESSION["notification"]=PageController::create($_POST);
       $_SESSION["notification_count"]=1;
       header('Location:/admin/page');
 
 
   }
   /*method delete
-  @param userId
-  *role delete user
+  @param PAgeId
+  *role delete page
   */
-  public function delete($userId){
-        return UserController::delete($userId);
+  public function delete($pageId){
+        return PageController::delete($pageId);
 
   }
-  public function update($userId){
-        $_SESSION["notification"]= UserController::update($_POST,$userId);
+  public function update($pageId){
+        $_SESSION["notification"]= PageController::update($_POST,$pageId);
               $_SESSION["notification_count"]=1;
             header('Location:/admin/page');
   }

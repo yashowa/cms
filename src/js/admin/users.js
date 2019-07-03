@@ -160,7 +160,7 @@ $('.js-delete-user').on('click',function(e){
           })
           $('#notification-bar').addClass('danger').append($(ul)).css('display','block');
         }else{
-         e.currentTarget.submit();
+        // e.currentTarget.submit();
 
       /*  var dataTosend={
              firstname:$("input[name='firstname']").val(),

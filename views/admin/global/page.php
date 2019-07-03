@@ -3,7 +3,6 @@
 
 
 <div class="content-page">
-  aaaaaaaaaaaaaaa
   <?php echo dirname(__FILE__);?>
   <h1><?php echo($params['page_name']);?></h1>
   <?php echo $params['content'];?>

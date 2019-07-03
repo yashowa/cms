@@ -8,9 +8,9 @@
 </head>
 
 <body>
-  <pre>
-<?php var_dump($_SESSION);?>
-</pre>
+
+<?php require(dirname(__FILE__).'/debug.php');?>
+
   <?php $notifications = isset($_SESSION['notification'])?$_SESSION['notification']:null;?>
 
   <div class="notification-bar <?php if(isset($params['success']) || isset($notifications['message'])): ?>fadeOut success<?php elseif(isset($params['errors']) || isset($notifications['errors'])):?> fadeOut danger<?php endif;?>" id="notification-bar">

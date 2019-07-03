@@ -178,31 +178,7 @@ class UserController extends BaseController
         };
     }
 
-    public static function isValid($field,$format){
 
-        if($field==""){
-           return false;
-        }
-
-        switch ($format){
-            case 'password':
-            return true;
-                break;
-            case 'name':
-            return true;
-                break;
-            case 'email':
-            return true;
-                break;
-            case 'profile':
-            return true;
-            break;
-            case 'email':
-            return true;
-            break;
-        }
-
-    }
 }
 
 
