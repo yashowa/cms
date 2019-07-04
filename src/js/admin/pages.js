@@ -1,4 +1,4 @@
-var DataFormat= require('../features/DataFormat');
+
 $(document).ready(function(){
 console.log('page.js');
     $('#form-page').on('submit',function(e){
@@ -8,7 +8,10 @@ console.log('page.js');
         var errors=[];
         var name=$("input[name='name']").val();
         var alias=$("input[name='alias']").val();
-        var content = tinymce.getContent('form-page-content');
+        var content = tinymce.get('form-page-content').getContent();
+
+        console.log('contenu',content);
+        return false;
         var published=$("#published").find('option:selected').val();
 
 
@@ -18,12 +21,7 @@ console.log('page.js');
                 msg:"Titre de la page incorrect"
             })
         }
-        if(!DataFormat.isValid(lastname,"name")){
-            errors.push({
-                input:"lastname",
-                msg:"Format de nom de famille incorrect"
-            })
-        }
+
         if(published==null || published=='')  {
             errors.push({
                 input:"published",
