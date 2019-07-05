@@ -3,17 +3,16 @@
 <h1><?php echo($params['page_name']);?></h1>
 
 
-
-
-
 <?php if(isset($params['success'])):?>
     <p class="success"><?php echo $params['success'];?></p>
 <?php endif; ?>
 
-<form id="form-page" method="post" action="<?php echo $params['url'];?>">
-  <input type="text" name="name" placeholder="Titre de la page" value="<?php echo(isset($params['page'])?$params['page']['name']:"");?>"/>
+<form id="form-page" method="post" autocomplete="off" action="<?php echo $params['url'];?>">
+  <input type="text" autocomplete="off" name="name" placeholder="Titre de la page" value="<?php echo(isset($params['page'])?$params['page']['name']:"");?>"/>
   <input type="text" name="alias" placeholder="Alias" value="<?php echo(isset($params['page'])?$params['page']['alias']:"");?>"/>
-<textarea id="form-page-content"></textarea>
+<textarea id="form-page-content">
+   <?php echo(isset($params['page'])?$params['page']['content']:"");?>
+</textarea>
 
   <select name="published" id="published">
     <option value=""  <?php if(!isset($params['page'])) echo"selected disabled hidden";?>>Etat de la page</option>

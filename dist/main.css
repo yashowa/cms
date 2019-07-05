@@ -75,6 +75,7 @@ table {
     padding: 7px 15px; }
 
 select {
+  margin-top: 15px;
   border-radius: 5px !important;
   padding: 7px; }
 

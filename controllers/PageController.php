@@ -24,7 +24,7 @@ class PageController extends BaseController
   }
   public static function getList(){
       $list = array();
-      $result = Connection::getInstance()->prepare('SELECT id, name,alias,published FROM deb_page');
+      $result = Connection::getInstance()->prepare('SELECT id, name,alias,published FROM deb_pages');
       $result->execute();
 
       while ($row = $result->fetch()) {
@@ -36,10 +36,19 @@ class PageController extends BaseController
       return $list;
   }
 
+
+  public static function getPage($id){
+
+      $result = Connection::getInstance()->prepare('SELECT name, alias,content, published,id,category FROM deb_pages WHERE id = :id');
+      $result->bindValue(":id",$id,PDO::PARAM_STR);
+      $result->execute();
+      return $result->fetch();
+
+  }
+
   public static function create($page){
 
-var_dump($page);
-exit;
+
       $published  = $page['published'];
       $name       = $page['name'];
       $alias      = $page['alias'];
@@ -70,7 +79,7 @@ exit;
       $date_creation = date("Y-m-d H:i:s");
       $last_update = date("Y-m-d H:i:s");
 
-      $sql = "INSERT INTO deb_page VALUES (0,:name,:alias,:content,:published,:category,:date_creation,:last_update)";
+      $sql = "INSERT INTO deb_pages VALUES (0,:name,:alias,:content,:published,:category,:date_creation,:last_update)";
       $req =Connection::getInstance()->prepare($sql);
       $req->bindValue(':name',$name,PDO::PARAM_STR);
       $req->bindValue(':alias',$alias,PDO::PARAM_STR);
@@ -83,7 +92,7 @@ exit;
      if($req->execute()){
         return array(
           "status"=>"success",
-          "message"=>"la création de la page a été effectuée avec succès"
+          "message"=>"la création de la page a été éffectuée avec succès"
         );
       }else{
         $errors[]="Une erreur est sur venue lors de la création de la page";

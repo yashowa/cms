@@ -120,13 +120,7 @@ class AdminPageController extends BaseController{
   *role delete page
   */
   public function add(){
-//    echo json_encode(PageController::create($_POST));
-
-      $_SESSION["notification"]=PageController::create($_POST);
-      $_SESSION["notification_count"]=1;
-      header('Location:/admin/page');
-
-
+    echo json_encode(PageController::create($_POST));
   }
   /*method delete
   @param PAgeId

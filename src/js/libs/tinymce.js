@@ -12,6 +12,6 @@ require ('./langs/fr_FR.js');
 // Initialize the app
 tinymce.init({
     selector: '#form-page-content',
-    plugins: ['paste', 'link'],
+    plugins: ['paste', 'link','image'],
     language: 'fr_FR'
 });

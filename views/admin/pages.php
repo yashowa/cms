@@ -11,6 +11,7 @@
           <th>Nom</th>
           <th>Alias</th>
           <th>Active</th>
+          <th>Actions</th>
         </tr>
     </thead>
     <tbody>
