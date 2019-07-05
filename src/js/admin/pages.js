@@ -10,7 +10,6 @@ console.log('page.js');
         var alias=$("input[name='alias']").val();
         var content = tinymce.get('form-page-content').getContent();
 
-        console.log('contenu',content);
         return false;
         var published=$("#published").find('option:selected').val();
 
@@ -45,5 +44,11 @@ console.log('page.js');
               }
         })
         return false
+    });
+
+    $("input[name='name']").on('keyup',function(e){
+        var nv;
+        var name =$(this).val().replace("/ +/",'-').toLowerCase();
+        $("input[name='alias']").val(name)
     })
 })
