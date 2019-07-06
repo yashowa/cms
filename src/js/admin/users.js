@@ -95,13 +95,8 @@ $('.js-delete-user').on('click',function(e){
 
     })
 
-
-
-
-    $("#form-user").on('submit',function(e){
-
+$("#form-user").on('submit',function(e){
       e.preventDefault();
-
         var url = $(this).attr('action')
         console.log(url)
         var errors=[];
@@ -258,17 +253,6 @@ document.cookie = "notification=; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/"
 })
 
 /*create user btn*/
-
-
-
-
-
-
-function remove(userId){
-
-
-}
-
 function resetModal(){
     $('.popin').fadeOut('fast');
     $('.popin-dialog .popin-header').html('');

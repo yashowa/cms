@@ -6,6 +6,6 @@
 </pre>
 
 
-
+    <?php var_dump($params['page']); ?>
 
   <?php endif;?>

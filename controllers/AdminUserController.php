@@ -70,8 +70,6 @@ class AdminUserController extends BaseController{
                 }
             }
             elseif(count($parsedQueryString)>4 && $parsedQueryString[4]=='delete'){
-
-
                     unset($_SESSION["notification"]);
                     unset($_SESSION["notification_count"]);
 
@@ -121,12 +119,9 @@ class AdminUserController extends BaseController{
   */
   public function add(){
 //    echo json_encode(UserController::create($_POST));
-
       $_SESSION["notification"]=UserController::create($_POST);
       $_SESSION["notification_count"]=1;
       header('Location:/admin/user');
-
-
   }
   /*method delete
   @param userId
@@ -134,7 +129,6 @@ class AdminUserController extends BaseController{
   */
   public function delete($userId){
         return UserController::delete($userId);
-
   }
   public function update($userId){
         $_SESSION["notification"]= UserController::update($_POST,$userId);

@@ -22,9 +22,10 @@ class PageController extends BaseController
       continue;
     }
   }
+
   public static function getList(){
       $list = array();
-      $result = Connection::getInstance()->prepare('SELECT id, name,alias,published FROM deb_page');
+      $result = Connection::getInstance()->prepare('SELECT id, name,alias,published FROM deb_pages');
       $result->execute();
 
       while ($row = $result->fetch()) {
@@ -36,10 +37,18 @@ class PageController extends BaseController
       return $list;
   }
 
+  public static function getPage($id){
+
+      $result = Connection::getInstance()->prepare('SELECT name, alias,content, published,id,category FROM deb_pages WHERE id = :id');
+      $result->bindValue(":id",$id,PDO::PARAM_STR);
+      $result->execute();
+      return $result->fetch();
+
+  }
+
   public static function create($page){
 
-var_dump($page);
-exit;
+
       $published  = $page['published'];
       $name       = $page['name'];
       $alias      = $page['alias'];
@@ -70,7 +79,7 @@ exit;
       $date_creation = date("Y-m-d H:i:s");
       $last_update = date("Y-m-d H:i:s");
 
-      $sql = "INSERT INTO deb_page VALUES (0,:name,:alias,:content,:published,:category,:date_creation,:last_update)";
+      $sql = "INSERT INTO deb_pages VALUES (0,:name,:alias,:content,:published,:category,:date_creation,:last_update)";
       $req =Connection::getInstance()->prepare($sql);
       $req->bindValue(':name',$name,PDO::PARAM_STR);
       $req->bindValue(':alias',$alias,PDO::PARAM_STR);
@@ -83,7 +92,7 @@ exit;
      if($req->execute()){
         return array(
           "status"=>"success",
-          "message"=>"la création de la page a été effectuée avec succès"
+          "message"=>"la création de la page a été éffectuée avec succès"
         );
       }else{
         $errors[]="Une erreur est sur venue lors de la création de la page";
@@ -93,4 +102,73 @@ exit;
       //$req->execute();
     //Connection::getInstance()->query($sql);
   }
+
+  public static function update($page , $pageId){
+
+
+      $$pageToUpdate = self::getUser($pageId);
+      $errors=array();
+
+
+      if(!(new self)->isValid($page['published'],'published')){
+        $errors[]="Vous n'avez pas sélectionné d'etat de publication";
+      }
+      if(!(new self)->isValid($page['name'],'name')){
+          $name = $page['name'];
+          $errors[]="Titre de page incorrect ou trop long";
+      }
+      if(!(new self)->isValid($page['alias'],'alias')){
+          $lastname = $page['lastname'];
+          $errors[]="format alias incorrect ou vide";
+      }
+
+
+      // On cherche s'l y'a deserreurs dans les champs du formulaire
+
+      if(count($errors)>0){
+        return array(
+          "errors"=> $errors
+        );
+      }
+
+      $last_update = date("Y-m-d H:i:s");
+      $sql = 'UPDATE deb_pages SET published=:published,firstname=:firstname,lastname=:lastname,email=:email,passwd=:password,last_update=:lastupdate WHERE id_user =:userId';
+
+      $q = Connection::getInstance()->prepare($sql);
+      $q->bindValue(':profile', $page['profile'], PDO::PARAM_STR);
+      $q->bindValue(':firstname', $page['firstname'], PDO::PARAM_STR);
+      $q->bindValue(':lastname', $page['lastname'], PDO::PARAM_STR);
+      $q->bindValue(':email', $page['email'], PDO::PARAM_STR);
+      $q->bindValue(':password', $password, PDO::PARAM_STR);
+      $q->bindValue(':lastupdate', $last_update, PDO::PARAM_STR);
+      $q->bindValue(':userId', $pageToUpdate['id_user'], PDO::PARAM_STR);
+        //s  $q->execute();
+      if($q->execute()){
+          return array(
+              "status"=>"success",
+              "message"=>"la mise à jour du compte de ".$pageToUpdate['firstname']." ".$pageToUpdate['lastname']." a été effectuée avec succès"
+          );
+      }else{
+          $errors[]="Une erreur est sur venue lors de la mise à jour  du compte de ".$pageToUpdate['firstname']." ". $pageToUpdate['lastname'];
+          return $errors;
+      };
+  }
+
+  public static function delete($id){
+    $sql = "DELETE FROM deb_pages WHERE id=:page";
+    $req= Connection::getInstance()->prepare($sql);
+    $req->bindValue(":page",$id,PDO::PARAM_STR);
+    $req->execute();
+
+    if($req->rowCount()>0){
+        return array(
+            "status"=>"success",
+            "message"=>"la page ".$id."a été supprimée avec succès"
+        );
+    }else{
+        $errors[]="Une erreur est sur venue lors de la suppression de la page ".$id;
+        return $errors;
+    }
+  }
+
 }

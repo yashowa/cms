@@ -11,6 +11,9 @@ var DataFormat={
         case 'password':
         var regexp = /([A-Za-z0-9]){4,}/;
         break;
+          case 'small text':
+              var regexp = /^.{1,72}$/;
+         break;
         default:
         return true;
         break;

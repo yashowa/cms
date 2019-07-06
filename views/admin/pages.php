@@ -11,19 +11,20 @@
           <th>Nom</th>
           <th>Alias</th>
           <th>Active</th>
+          <th>Actions</th>
         </tr>
     </thead>
     <tbody>
       <?php if(count($params['pages'])>0):?>
               <?php foreach ($params['pages'] as $key => $page):?>
-                <tr id="user-<?php echo $user['id']; ?>">
+                <tr id="page-<?php echo $page['id']; ?>">
                   <td><?php echo $page['id'] ?></td>
                   <td><?php echo $page['name'] ?></td>
                   <td><?php echo $page['alias'] ?></td>
                   <td><?php echo $page['published'] ?></td>
                   <td>
                     <a class="btn btn-default" href="/admin/page/<?php echo $page['id'];?>">Modifier<a>
-                    <a class ="btn danger js-delete-page" href="/admin/page/<?php echo $user['id'];?>/delete">Supprimer<a>
+                    <a class ="btn danger js-delete-page" href="/admin/page/<?php echo $page['id'];?>/delete">Supprimer<a>
                   </td>
                 </tr>
               <?php endforeach;?>
@@ -32,7 +33,6 @@
         <td>Vide</td>
       </tr>
     <?php endif; ?>
-
     </tbody>
   </table>
 </div>

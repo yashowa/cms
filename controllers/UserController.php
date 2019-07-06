@@ -1,6 +1,4 @@
 <?php
-
-
 class UserController extends BaseController
 {
     public function index()  {
@@ -8,7 +6,6 @@ class UserController extends BaseController
             'page_name' => "Accueil",
             'routes' => $this->getRoutes()
         );
-//var_dump($params);
         $this->render('home.php', $params);
     }
 
@@ -47,22 +44,6 @@ class UserController extends BaseController
         return $result->fetch();
     }
 
-    public static function delete($id){
-      $sql = "DELETE FROM deb_users WHERE id_user=:user";
-      $req= Connection::getInstance()->prepare($sql);
-      $req->bindValue(":user",$id,PDO::PARAM_STR);
-      $req->execute();
-
-      if($req->rowCount()>0){
-          return array(
-              "status"=>"success",
-              "message"=>"le compte ".$id."a été supprimé avec succès"
-          );
-      }else{
-          $errors[]="Une erreur est sur venue lors de la suppression du compte ".$id;
-          return $errors;
-      }
-    }
     public static function create($user){
 
 
@@ -178,9 +159,22 @@ class UserController extends BaseController
         };
     }
 
+    public static function delete($id){
+      $sql = "DELETE FROM deb_users WHERE id_user=:user";
+      $req= Connection::getInstance()->prepare($sql);
+      $req->bindValue(":user",$id,PDO::PARAM_STR);
+      $req->execute();
+
+      if($req->rowCount()>0){
+          return array(
+              "status"=>"success",
+              "message"=>"le compte ".$id."a été supprimé avec succès"
+          );
+      }else{
+          $errors[]="Une erreur est sur venue lors de la suppression du compte ".$id;
+          return $errors;
+      }
+    }
 
 }
-
-
-
 ?>

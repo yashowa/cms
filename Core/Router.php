@@ -4,7 +4,7 @@ Class Router
   public $_status;
 
   public static function setStatus(bool $value){
-    $this->$_status=$value;
+    $this->_status=$value;
   }
   public static function routes($list){
 
@@ -17,7 +17,7 @@ Class Router
 
   public static function getRoutes($co){
     //return array('test'=>"pouet");
-    $routes = $co->query("SELECT * FROM `deb_page`");
+    $routes = $co->query("SELECT * FROM `deb_pages`");
     $routes->setFetchMode(PDO::FETCH_OBJ);
     $resultats=array();
     while( $resultat = $routes->fetch() )

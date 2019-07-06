@@ -41,13 +41,13 @@ INSERT INTO `deb_adminpage` VALUES (1,'utilisateurs','user'),(2,'pages','page'),
 UNLOCK TABLES;
 
 --
--- Table structure for table `deb_page`
+-- Table structure for table `deb_pages`
 --
 
-DROP TABLE IF EXISTS `deb_page`;
+DROP TABLE IF EXISTS `deb_pages`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `deb_page` (
+CREATE TABLE `deb_pages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
   `alias` varchar(256) NOT NULL,
@@ -61,13 +61,13 @@ CREATE TABLE `deb_page` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `deb_page`
+-- Dumping data for table `deb_pages`
 --
 
-LOCK TABLES `deb_page` WRITE;
-/*!40000 ALTER TABLE `deb_page` DISABLE KEYS */;
-INSERT INTO `deb_page` VALUES (1,'mentions légales','mentions','<p>Lorem ipsum</p>',1,2,'2018-09-24 15:03:00','2018-09-24 15:03:00'),(2,'test','aliastest','<h3>Veni vidi vici</h3>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tristique eros lobortis, commodo ex mattis, maximus velit. Nulla aliquet sodales varius. Vestibulum tempus neque vel viverra pretium. Duis consectetur nunc nec felis vulputate semper at a mi. Vestibulum auctor sodales nisi, at viverra orci lacinia eu. Sed pellentesque ultricies metus, tincidunt congue nunc posuere quis. Vestibulum risus mauris, efficitur eu lectus in, semper porttitor turpis. Ut ultricies aliquet nunc eget luctus. In eleifend pellentesque turpis a placerat. Quisque sagittis eros arcu, at luctus lacus egestas nec. Ut consectetur sed magna vel sollicitudin.\r\n</p><p>\r\nInterdum et malesuada fames ac ante ipsum primis in faucibus. Morbi ut justo nisl. Pellentesque non imperdiet massa. Nullam volutpat euismod felis, quis cursus ex luctus a. Integer cursus leo sit amet urna pellentesque, eu blandit sapien dapibus. Duis ac congue augue. Nunc vitae mattis risus. Duis quis massa lorem. Nulla sed mattis elit. Nulla tincidunt, neque ut blandit consequat, nisl odio eleifend ante, non aliquet magna magna non magna.\r\n</p><p>\r\nProin est dui, consequat a lorem suscipit, auctor euismod lorem. Fusce augue nisl, luctus porttitor malesuada in, bibendum sit amet enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus eu congue arcu, in aliquet tellus. Quisque nibh ex, egestas vel vestibulum vitae, bibendum vitae nunc. Ut faucibus tincidunt risus, sit amet euismod ipsum pharetra eu. Nam porttitor consequat est. Praesent aliquet volutpat sapien sed interdum.\r\n</p><p>\r\nInterdum et malesuada fames ac ante ipsum primis in faucibus. Sed viverra venenatis leo non pharetra. Maecenas iaculis iaculis libero eget tristique. Curabitur mollis elementum placerat. Nam venenatis lacinia rhoncus. Curabitur fermentum eros sit amet lorem maximus auctor. Cras dignissim, nisl vitae auctor dictum, dolor lorem semper quam, ac congue enim sem ut purus. Vivamus vel velit libero. Donec placerat sed ante vel imperdiet. Praesent ut fringilla urna. Suspendisse finibus auctor imperdiet. Etiam pretium, turpis ultrices tincidunt lacinia, ex lacus mollis sem, eget facilisis nisi augue ac nibh.\r\n</p><p>\r\nProin suscipit dapibus pharetra. Fusce blandit accumsan ex at ornare. Phasellus quis facilisis dui, non commodo nisl. Nullam scelerisque et tellus et accumsan. Nulla facilisi. Quisque id commodo nisl, vel sagittis nisi. Duis nec libero nibh. Sed semper non ante vel porttitor. Pellentesque mi justo, aliquam id nibh a, lacinia vehicula nisl. Aenean dapibus, nulla vel dignissim eleifend, elit nibh mollis felis, ut bibendum nunc elit a enim. Suspendisse cursus venenatis ullamcorper. Quisque suscipit ut turpis vel pharetra.</p>',0,1,'0000-00-00 00:00:00','0000-00-00 00:00:00');
-/*!40000 ALTER TABLE `deb_page` ENABLE KEYS */;
+LOCK TABLES `deb_pages` WRITE;
+/*!40000 ALTER TABLE `deb_pages` DISABLE KEYS */;
+INSERT INTO `deb_pages` VALUES (1,'mentions légales','mentions','<p>Lorem ipsum</p>',1,2,'2018-09-24 15:03:00','2018-09-24 15:03:00'),(2,'test','aliastest','<h3>Veni vidi vici</h3>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tristique eros lobortis, commodo ex mattis, maximus velit. Nulla aliquet sodales varius. Vestibulum tempus neque vel viverra pretium. Duis consectetur nunc nec felis vulputate semper at a mi. Vestibulum auctor sodales nisi, at viverra orci lacinia eu. Sed pellentesque ultricies metus, tincidunt congue nunc posuere quis. Vestibulum risus mauris, efficitur eu lectus in, semper porttitor turpis. Ut ultricies aliquet nunc eget luctus. In eleifend pellentesque turpis a placerat. Quisque sagittis eros arcu, at luctus lacus egestas nec. Ut consectetur sed magna vel sollicitudin.\r\n</p><p>\r\nInterdum et malesuada fames ac ante ipsum primis in faucibus. Morbi ut justo nisl. Pellentesque non imperdiet massa. Nullam volutpat euismod felis, quis cursus ex luctus a. Integer cursus leo sit amet urna pellentesque, eu blandit sapien dapibus. Duis ac congue augue. Nunc vitae mattis risus. Duis quis massa lorem. Nulla sed mattis elit. Nulla tincidunt, neque ut blandit consequat, nisl odio eleifend ante, non aliquet magna magna non magna.\r\n</p><p>\r\nProin est dui, consequat a lorem suscipit, auctor euismod lorem. Fusce augue nisl, luctus porttitor malesuada in, bibendum sit amet enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus eu congue arcu, in aliquet tellus. Quisque nibh ex, egestas vel vestibulum vitae, bibendum vitae nunc. Ut faucibus tincidunt risus, sit amet euismod ipsum pharetra eu. Nam porttitor consequat est. Praesent aliquet volutpat sapien sed interdum.\r\n</p><p>\r\nInterdum et malesuada fames ac ante ipsum primis in faucibus. Sed viverra venenatis leo non pharetra. Maecenas iaculis iaculis libero eget tristique. Curabitur mollis elementum placerat. Nam venenatis lacinia rhoncus. Curabitur fermentum eros sit amet lorem maximus auctor. Cras dignissim, nisl vitae auctor dictum, dolor lorem semper quam, ac congue enim sem ut purus. Vivamus vel velit libero. Donec placerat sed ante vel imperdiet. Praesent ut fringilla urna. Suspendisse finibus auctor imperdiet. Etiam pretium, turpis ultrices tincidunt lacinia, ex lacus mollis sem, eget facilisis nisi augue ac nibh.\r\n</p><p>\r\nProin suscipit dapibus pharetra. Fusce blandit accumsan ex at ornare. Phasellus quis facilisis dui, non commodo nisl. Nullam scelerisque et tellus et accumsan. Nulla facilisi. Quisque id commodo nisl, vel sagittis nisi. Duis nec libero nibh. Sed semper non ante vel porttitor. Pellentesque mi justo, aliquam id nibh a, lacinia vehicula nisl. Aenean dapibus, nulla vel dignissim eleifend, elit nibh mollis felis, ut bibendum nunc elit a enim. Suspendisse cursus venenatis ullamcorper. Quisque suscipit ut turpis vel pharetra.</p>',0,1,'0000-00-00 00:00:00','0000-00-00 00:00:00');
+/*!40000 ALTER TABLE `deb_pages` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
