@@ -1,5 +1,5 @@
 var DataFormat= require('../features/DataFormat');
-
+var Tablesort = require('tablesort');
 $(document).ready(function(){
 
 
@@ -208,7 +208,18 @@ window.location ="/admin/user"
       }
     })
 
-
+$('#table-users th').on('click',function(){
+  if($(this).hasClass('ascending')){
+    $(this).removeClass('ascending');
+    $(this).toggleClass('descending');
+  }else{
+    $(this).removeClass('descending');
+    $(this).toggleClass('ascending');
+  }
+  $(this).siblings().removeClass('ascending');
+  $(this).siblings().removeClass('descending');
+})
+//new Tablesort(document.getElementById('table-users'));
 
 /*check datas from form user*/
 
@@ -250,6 +261,26 @@ clearTimeout();
 
 document.cookie = "notification=; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
 */
+
+/* add filter datas*/
+
+$('.js-filter-asc').on('click',function(e){
+  e.preventDefault();
+  indexCol = $(this).index();
+  var arrayCol ={};
+  $('tr').each(function(index){
+       var key = $(this).children($('td')).eq(indexCol)
+      arrayCol[key.text()] = key;
+  })
+  console.log(arrayCol)
+  //var arrayFiltered = arrayCol.sort()
+  console.log(arrayFiltered)
+})
+
+
+
+
+
 })
 
 /*create user btn*/

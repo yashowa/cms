@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: "Lato";
   font-style: normal;
@@ -64,6 +65,12 @@ table {
   table th {
     padding: 7px 15px;
     border: 1px solid #dadada; }
+    table th.ascending::after {
+      content: "▲";
+      font-size: small; }
+    table th.descending::after {
+      content: "▼";
+      font-size: small; }
   table tr {
     -webkit-transition: all ease 300ms;
     -moz-: all ease 300ms;
@@ -128,6 +135,9 @@ select {
   #notification-bar .js-close-notification::before {
     content: " X ";
     font-weight: bold; }
+
+.js-filter-asc {
+  cursor: pointer; }
 
 .popin {
   display: none;

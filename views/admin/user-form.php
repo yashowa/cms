@@ -2,10 +2,6 @@
 
 <h1><?php echo($params['page_name']);?></h1>
 
-
-
-
-
 <?php if(isset($params['success'])):?>
     <p class="success"><?php echo $params['success'];?></p>
 <?php endif; ?>

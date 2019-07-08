@@ -4,7 +4,7 @@
 
   <a href="/admin/page/new" class="btn btn-add js-add-page success">Créer une nouvelle page</a>
 
-  <table>
+  <table class="tablesort" id='table-pages'>
     <thead>
         <tr>
           <th>n° Id</th>

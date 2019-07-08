@@ -1,6 +1,6 @@
 console.log('ok')
 import css from './sass/style.scss';
-
+var tablesort = require('tablesort');
 require ('./js/admin/users.js');
 require ('./js/libs/tinymce.js');
 require ('./js/admin/pages.js');

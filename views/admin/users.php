@@ -5,7 +5,7 @@
 
   <a href="/admin/user/new" class="btn btn-add js-add-user success">Ajouter un nouvel utilisateur</a>
 
-  <table>
+  <table id="table-users">
     <thead>
         <tr>
           <th>n° Id</th>

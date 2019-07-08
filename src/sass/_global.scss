@@ -55,8 +55,20 @@ table{
 
   }
   th{
-        padding:7px 15px;
-        border: 1px solid $gray;
+      padding:7px 15px;
+      border: 1px solid $gray;
+      &.ascending{
+        &::after{
+          content: "▲";
+          font-size: small;
+        }
+      }
+      &.descending{
+        &::after{
+          content: "▼";
+          font-size: small;
+        }
+      }
   }
   tr{
     -webkit-transition: all ease 300ms;
@@ -150,4 +162,8 @@ select{
       font-weight:bold;
     }
   }
+}
+
+.js-filter-asc {
+  cursor: pointer;
 }
