@@ -1,86 +1,87 @@
 var DataFormat= require('../features/DataFormat');
 var Tablesort = require('tablesort');
+var tableElem = document.getElementById('table-pages');
+
 $(document).ready(function(){
 
+    /*delete a page  on js-delete-page button click*/
+    $('.js-delete-page').on('click',function(e){
+      e.preventDefault();
+      var that = $(this);
+      var pageId = that.closest('tr').attr('id');
+      var url = that.attr('href');
+      var header="Voulez vous supprimer la page suivante? (Toute suppression sera définitive)";
+      var content="";
+      var btnDelete = document.createElement('button');
+      var btnCancel = document.createElement('button');
+      var divHeader = document.createElement('div');
+      var divContent = document.createElement('p');
 
-/*delete a page  on js-delete-page button click*/
+      $('.popin').fadeIn();
+      $('body').toggleClass('no-scroll');
 
-  $('.js-delete-page').on('click',function(e){
-  e.preventDefault();
-  var that = $(this);
-  var pageId = that.closest('tr').attr('id');
-  var url = that.attr('href');
-  var header="Voulez vous supprimer la page suivante? (Toute suppression sera définitive)";
-  var content="";
-  var btnDelete = document.createElement('button');
-  var btnCancel = document.createElement('button');
-  var divHeader = document.createElement('div');
-  var divContent = document.createElement('p');
-
-  $('.popin').fadeIn();
-  $('body').toggleClass('no-scroll');
-  $(btnDelete).attr({
-  "class":"btn danger",
-  "href":url,
-  })
-  .html('Supprimer la page')
-  .on('click',function(){
-      if(url!=""){
-          $.ajax({
-              url   :url,
-              type  :'POST',
-              data  :'token',
-              dataType:'json',
-              success : function(data){
-                  console.log(data.success)
-                  var msg, className;
-                  try{
-                      if(data.success!=""){
-                          msg = data.success;
-                          className='success';
-                      }else{
-                          msg = data.error;
-                          className='danger';
-                      }
-                  }catch(error){
-                      className='danger';
-                      msg='une erreur est survenue, format de données incorrectes depuis le serveur';
-                  }
-                  resetModal();
-                  $('#'+pageId).remove();
-                  $("#notification-bar").css('display','block !important');
-                  $('#notification-bar').addClass(className + " fadeOut").html(msg);
-                  setTimeout(function(){
-                      $('#notification-bar').fadeOut();
-                      $('#notification-bar').removeClass(className+" fadeOut");
-                  },3000);
-                  clearTimeout();
-              }
-          })
-      }
-  });
-
-  $(btnCancel).attr({
-          "class":"btn default"
+      $(btnDelete).attr({
+          "class":"btn danger",
+          "href":url,
       })
-      .html('Annuler')
-      .on('click',function() {
-          resetModal();
+      .html('Supprimer la page')
+      .on('click',function(){
+          if(url!=""){
+              $.ajax({
+                  url   :url,
+                  type  :'POST',
+                  data  :'token',
+                  dataType:'json',
+                  success : function(data){
+                      console.log(data.success)
+                      var msg, className;
+                      try{
+                          if(data.success!=""){
+                              msg = data.success;
+                              className='success';
+                          }else{
+                              msg = data.error;
+                              className='danger';
+                          }
+                      }catch(error){
+                          className='danger';
+                          msg='une erreur est survenue, format de données incorrectes depuis le serveur';
+                      }
+                      resetModal();
+                      $('#'+pageId).remove();
+                      $("#notification-bar").css('display','block !important');
+                      $('#notification-bar').addClass(className + " fadeOut").html(msg);
+                      setTimeout(function(){
+                          $('#notification-bar').fadeOut();
+                          $('#notification-bar').removeClass(className+" fadeOut");
+                      },3000);
+                      clearTimeout();
+                  }
+              })
+          }
       });
 
-  $(divHeader).html(header);
-  $(divContent).html(content);
+      $(btnCancel).attr({
+              "class":"btn default"
+          })
+          .html('Annuler')
+          .on('click',function() {
+              resetModal();
+          });
 
-  $('.popin-dialog .popin-header').append(divHeader);
-  $('.popin-dialog .popin-content').append(divContent);
-  $('.popin-dialog .popin-footer').append(btnDelete);
-  $('.popin-dialog .popin-footer').append(btnCancel);
+      $(divHeader).html(header);
+      $(divContent).html(content);
 
-  })
+      $('.popin-dialog .popin-header').append(divHeader);
+      $('.popin-dialog .popin-content').append(divContent);
+      $('.popin-dialog .popin-footer').append(btnDelete);
+      $('.popin-dialog .popin-footer').append(btnCancel);
 
-  console.log('page.js');
-  /*behaviour of launch page form update or create*/
-  $('#form-page').on('submit',function(e){
+    })
+
+
+    /*behaviour of launch page form update or create*/
+    $('#form-page').on('submit',function(e){
       e.preventDefault();
       var url = $(this).attr('action');
       console.log(url);
@@ -167,42 +168,39 @@ $(document).ready(function(){
               }
           })
       }
-
-
-
-
-
-
-
-
-
-
-
       return false;
-  });
-  /*generation of alias automatically*/
-  $("input[name='name']").on('keyup',function(e){
+    });
+
+
+    /*generation of alias automatically*/
+    $("input[name='name']").on('keyup',function(e){
       var nv;
       var name =$(this).val();
       var alias = name.replace(/\s/g,'-').toLowerCase();
       console.clear();
       console.log(alias)
       $("input[name='alias']").val(alias);
-  })
+    })
 
-  $('#table-pages th').on('click',function(){
-    if($(this).hasClass('ascending')){
-      $(this).removeClass('ascending');
-      $(this).toggleClass('descending');
-    }else{
-      $(this).removeClass('descending');
-      $(this).toggleClass('ascending');
+
+    /*launch filter tablesort on table*/
+    if(typeof(tableElem) != 'undefined' && tableElem != null){
+        new Tablesort(tableElem);
+        $('#table-pages th').on('click',function(){
+            if($(this).hasClass('ascending')){
+                $(this).removeClass('ascending');
+                $(this).toggleClass('descending');
+            }else{
+                $(this).removeClass('descending');
+                $(this).toggleClass('ascending');
+            }
+            $(this).siblings().removeClass('ascending');
+            $(this).siblings().removeClass('descending');
+        })
     }
-    $(this).siblings().removeClass('ascending');
-    $(this).siblings().removeClass('descending');
-  })
-  //new Tablesort(document.getElementById('table-pages'));
+
 })
+
 
 function resetModal(){
     $('.popin').fadeOut('fast');

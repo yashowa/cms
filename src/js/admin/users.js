@@ -1,7 +1,8 @@
 var DataFormat= require('../features/DataFormat');
 var Tablesort = require('tablesort');
-$(document).ready(function(){
+var tableElem = document.getElementById('table-users');
 
+$(document).ready(function(){
 
 document.cookie = "notification=; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
 
@@ -95,131 +96,146 @@ $('.js-delete-user').on('click',function(e){
 
     })
 
-$("#form-user").on('submit',function(e){
-      e.preventDefault();
-        var url = $(this).attr('action')
-        console.log(url)
-        var errors=[];
-        var firstname=$("input[name='firstname']").val();
-        var lastname=$("input[name='lastname']").val();
-        var email=$("input[name='email']").val();
-        var password=$("input[name='password']").val();
-        var profile=$("#profile").find('option:selected').val()
-        console.log(profile,"oko");
+    $("#form-user").on('submit',function(e){
+          e.preventDefault();
+            var url = $(this).attr('action')
+            console.log(url)
+            var errors=[];
+            var firstname=$("input[name='firstname']").val();
+            var lastname=$("input[name='lastname']").val();
+            var email=$("input[name='email']").val();
+            var password=$("input[name='password']").val();
+            var profile=$("#profile").find('option:selected').val()
+            console.log(profile,"oko");
 
 
-        if(!DataFormat.isValid(firstname,"name")){
-          errors.push({
-            input:"firstname",
-            msg:"Format de Prénom incorrect"
-          })
-        }
-        if(!DataFormat.isValid(lastname,"name")){
-          errors.push({
-            input:"lastname",
-            msg:"Format de nom de famille incorrect"
-          })
-        }
-        if(!DataFormat.isValid(email,"email")){
-          errors.push({
-            input:"email",
-            msg:"Format d'email incorrect"
-          })
-        }
-        if(!DataFormat.isValid(password,"password")){
-          errors.push({
-            input:"password",
-            msg:"Format de Mot de passe incorrect (celui-ci doit comporter au moins 4 caractères alphanumériques)"
-          })
-        }
-        if(profile==0 ||  profile==null || profile=='')  {
-          errors.push({
-            input:"profile",
-            msg:"Vous navez pas sélectionné de profil"
-          })
-        }
-
-        if(errors.length>0){
-          var a =document.createElement('a');
-            $('#notification-bar').html('').append($(a).addClass('js-close-notification').on('click',function(e){
-              e.preventDefault();
-              console.log('i')
-              $('#notification-bar').fadeOut();
-            })
-            );
-            var ul = document.createElement('ul');
-          $.each(errors,function(k,v){
-              var li = document.createElement('li');
-              $(li).append(v.msg);
-              $(ul).append($(li));
-          })
-          $('#notification-bar').addClass('danger').append($(ul)).css('display','block');
-        }else{
-        // e.currentTarget.submit();
-
-      /*  var dataTosend={
-             firstname:$("input[name='firstname']").val(),
-             lastname:$("input[name='lastname']").val(),
-             email:$("input[name='email']").val(),
-             password:$("input[name='password']").val(),
-             profile:$("select[name='profile']").val(),
-        }
-        $.ajax({
-          url   :url,
-          type  :'POST',
-          data  :dataTosend,
-          dataType:'json',
-          success : function(data){
-              console.log(data)
-              console.log(data.message)
-
-
-              var msg, className;
-              try{
-
-                  //try to parse JSON
-                  //var encodedJson = $.parseJSON(data);
-
-                  if(data.message!=""){
-                      msg = data.message;
-                      className='success';
-                  }else{
-                      msg = data.error;
-                      className='danger';
-                  }
-              }catch(error){
-                  className='danger';
-                  msg='une erreur est survenue, format de données incorrectes depuis le serveur';
-              }
-
-document.cookie='notification='+JSON.stringify(data);
-
-window.location ="/admin/user"
-
-              $("#notification-bar").css('display','block !important');
-              $('#notification-bar').addClass(className + " fadeOut").html(msg);
-              setTimeout(function(){
-                  $('#notification-bar').fadeOut();
-                  $('#notification-bar').removeClass(className+" fadeOut");
-              },3000);
-              clearTimeout();
+            if(!DataFormat.isValid(firstname,"name")){
+              errors.push({
+                input:"firstname",
+                msg:"Format de Prénom incorrect"
+              })
             }
-        })*/
+            if(!DataFormat.isValid(lastname,"name")){
+              errors.push({
+                input:"lastname",
+                msg:"Format de nom de famille incorrect"
+              })
+            }
+            if(!DataFormat.isValid(email,"email")){
+              errors.push({
+                input:"email",
+                msg:"Format d'email incorrect"
+              })
+            }
+            if(!DataFormat.isValid(password,"password")){
+              errors.push({
+                input:"password",
+                msg:"Format de Mot de passe incorrect (celui-ci doit comporter au moins 4 caractères alphanumériques)"
+              })
+            }
+            if(profile==0 ||  profile==null || profile=='')  {
+              errors.push({
+                input:"profile",
+                msg:"Vous navez pas sélectionné de profil"
+              })
+            }
+
+            if(errors.length>0){
+              var a =document.createElement('a');
+                $('#notification-bar').html('').append($(a).addClass('js-close-notification').on('click',function(e){
+                  e.preventDefault();
+                  console.log('i')
+                  $('#notification-bar').fadeOut();
+                })
+                );
+                var ul = document.createElement('ul');
+              $.each(errors,function(k,v){
+                  var li = document.createElement('li');
+                  $(li).append(v.msg);
+                  $(ul).append($(li));
+              })
+              $('#notification-bar').addClass('danger').append($(ul)).css('display','block');
+            }else{
+            // e.currentTarget.submit();
+
+          /*  var dataTosend={
+                 firstname:$("input[name='firstname']").val(),
+                 lastname:$("input[name='lastname']").val(),
+                 email:$("input[name='email']").val(),
+                 password:$("input[name='password']").val(),
+                 profile:$("select[name='profile']").val(),
+            }
+            $.ajax({
+              url   :url,
+              type  :'POST',
+              data  :dataTosend,
+              dataType:'json',
+              success : function(data){
+                  console.log(data)
+                  console.log(data.message)
+
+
+                  var msg, className;
+                  try{
+
+                      //try to parse JSON
+                      //var encodedJson = $.parseJSON(data);
+
+                      if(data.message!=""){
+                          msg = data.message;
+                          className='success';
+                      }else{
+                          msg = data.error;
+                          className='danger';
+                      }
+                  }catch(error){
+                      className='danger';
+                      msg='une erreur est survenue, format de données incorrectes depuis le serveur';
+                  }
+
+    document.cookie='notification='+JSON.stringify(data);
+
+    window.location ="/admin/user"
+
+                  $("#notification-bar").css('display','block !important');
+                  $('#notification-bar').addClass(className + " fadeOut").html(msg);
+                  setTimeout(function(){
+                      $('#notification-bar').fadeOut();
+                      $('#notification-bar').removeClass(className+" fadeOut");
+                  },3000);
+                  clearTimeout();
+                }
+            })*/
+          }
+        })
+
+    $('#table-users th').on('click',function(){
+      if($(this).hasClass('ascending')){
+        $(this).removeClass('ascending');
+        $(this).toggleClass('descending');
+      }else{
+        $(this).removeClass('descending');
+        $(this).toggleClass('ascending');
       }
+      $(this).siblings().removeClass('ascending');
+      $(this).siblings().removeClass('descending');
     })
 
-$('#table-users th').on('click',function(){
-  if($(this).hasClass('ascending')){
-    $(this).removeClass('ascending');
-    $(this).toggleClass('descending');
-  }else{
-    $(this).removeClass('descending');
-    $(this).toggleClass('ascending');
-  }
-  $(this).siblings().removeClass('ascending');
-  $(this).siblings().removeClass('descending');
-})
-//new Tablesort(document.getElementById('table-users'));
+    /*launch filter tablesort on table*/
+    if(typeof(tableElem) != 'undefined' && tableElem != null) {
+        new Tablesort(document.getElementById('table-users'));
+        $('#table-users th').on('click',function(){
+            if($(this).hasClass('ascending')){
+                $(this).removeClass('ascending');
+                $(this).toggleClass('descending');
+            }else{
+                $(this).removeClass('descending');
+                $(this).toggleClass('ascending');
+            }
+            $(this).siblings().removeClass('ascending');
+            $(this).siblings().removeClass('descending');
+        })
+    }
 
 /*check datas from form user*/
 

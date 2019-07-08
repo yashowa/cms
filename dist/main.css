@@ -112,6 +112,9 @@ select {
     background-color: #000000;
     color: #ffffff; }
 
+label {
+  font-weight: bolder; }
+
 .no-scroll {
   overflow: hidden !important; }
 
@@ -138,6 +141,33 @@ select {
 
 .js-filter-asc {
   cursor: pointer; }
+
+.switch {
+  position: relative; }
+  .switch span {
+    background: #eeeeee;
+    width: 68px;
+    height: 12px;
+    position: absolute;
+    left: 0;
+    top: 12px;
+    opacity: 1;
+    border-radius: 6px; }
+    .switch span::before {
+      width: 30px;
+      height: 30px;
+      background: #DC143C;
+      content: '';
+      left: 0;
+      top: -8px;
+      position: absolute;
+      border-radius: 50%; }
+  .switch input:checked + span::before {
+    transform: translateX(34px);
+    content: "";
+    background: #008000; }
+  .switch input {
+    opacity: 0; }
 
 .popin {
   display: none;

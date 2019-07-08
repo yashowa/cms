@@ -4,9 +4,13 @@ import tinymce from 'tinymce/tinymce';
 // A theme is also required
 import 'tinymce/themes/silver';
 
+
 // Any plugins you want to use has to be imported
 import 'tinymce/plugins/paste';
 import 'tinymce/plugins/link';
+import 'tinymce/plugins/autoresize/plugin';
+import 'tinymce/plugins/image/plugin';
+
 require ('./langs/fr_FR.js');
 
 // Initialize the app

@@ -130,6 +130,9 @@ select{
 }
 
 
+label{
+ font-weight: bolder;
+}
 //comportment
 
 .no-scroll{
@@ -167,3 +170,38 @@ select{
 .js-filter-asc {
   cursor: pointer;
 }
+
+//input
+.switch {
+    position: relative;
+
+    span {
+      background: $graylight;
+      width: 68px;
+      height: 12px;
+      position: absolute;
+      left: 0;
+      top: 12px;
+      opacity: 1;
+      border-radius: 6px;
+      &::before {
+        width: 30px;
+        height: 30px;
+        background: $red;
+        content: '';
+        left: 0;
+        top: -8px;
+        position: absolute;
+        border-radius: 50%
+      }
+    }
+    input:checked + span::before {
+      transform: translateX(34px);
+      content: "";
+      background: $green;
+    }
+    input {
+      opacity: 0
+    }
+}
+
