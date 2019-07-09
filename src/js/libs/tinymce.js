@@ -18,13 +18,13 @@ tinymce.init({
     selector: '#form-page-content',
     plugins: ['paste', 'link','image'],
     language: 'fr_FR',
-    images_upload_url :'upload.php',
+    images_upload_url :'uploadfile',
     images_upload_handler: function (blobInfo, success, failure) {
         var xhr, formData;
 
         xhr = new XMLHttpRequest();
         xhr.withCredentials = false;
-        xhr.open('POST', 'upload.php');
+        xhr.open('POST', 'upload');
 
         xhr.onload = function() {
             var json;
@@ -34,6 +34,8 @@ tinymce.init({
                 return;
             }
 
+
+            console.log(xhr.responseText);
             json = JSON.parse(xhr.responseText);
 
             if (!json || typeof json.location != 'string') {

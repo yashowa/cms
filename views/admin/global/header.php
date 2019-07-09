@@ -48,8 +48,7 @@
       <?php endif;?>
   </div>
 
-
-
+<?php var_dump($params['routes']);?>
 <?php if(isset($_SESSION['user'])):?>
 <nav id="nav-infos-admin">
     <div id="logo-admin"></div>
@@ -62,7 +61,19 @@
 <nav id="menu-navigation-admin">
     <ul>
     <?php foreach($params['routes'] as $route): ?>
+        <?php var_dump($route);?>
+        <?php if(property_exists($route,'subnav')):?>
+            <li>
+
+                <?php echo $route->name; ?>
+
+                <?php foreach($route['subnav'] as $subroute): ?>
+                <li><a href="/admin/<?php echo $subroute->alias; ?>"><?php echo $subroute->name; ?></a></li>
+                <?php endforeach; ?>
+            </li>
+        <?php else: ?>
         <li><a href="/admin/<?php echo $route->alias; ?>"><?php echo $route->name; ?></a></li>
+        <?php endif;?>
     <?php endforeach; ?>
     </ul>
 </nav>

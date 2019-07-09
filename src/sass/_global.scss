@@ -180,8 +180,8 @@ label{
       width: 68px;
       height: 12px;
       position: absolute;
-      left: 0;
-      top: 12px;
+      margin-left: 15px;
+      //left: 0;
       opacity: 1;
       border-radius: 6px;
       &::before {
@@ -201,7 +201,11 @@ label{
       background: $green;
     }
     input {
-      opacity: 0
+      position: absolute;
+      margin-left: 15px;
+      opacity: 0;
+      display: inline-block;
+      margin-bottom: 0;
     }
 }
 

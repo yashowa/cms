@@ -149,8 +149,7 @@ label {
     width: 68px;
     height: 12px;
     position: absolute;
-    left: 0;
-    top: 12px;
+    margin-left: 15px;
     opacity: 1;
     border-radius: 6px; }
     .switch span::before {
@@ -167,7 +166,11 @@ label {
     content: "";
     background: #008000; }
   .switch input {
-    opacity: 0; }
+    position: absolute;
+    margin-left: 15px;
+    opacity: 0;
+    display: inline-block;
+    margin-bottom: 0; }
 
 .popin {
   display: none;
