@@ -1,5 +1,4 @@
 
-<ul><li><a href="admin/logout">Déconnexion</a></li></ul>
 <?php include_once('global/header.php');?>
 
 

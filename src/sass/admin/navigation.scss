@@ -1,11 +1,11 @@
 @import "_variables";
 #menu-navigation-admin{
-  ul{
+  > ul{
     display: flex;
     width: 100%;
     margin: 0;
     padding: 0;
-    li{
+    > li{
       display: flex;
       align-items: center;
       text-align: center;
@@ -13,11 +13,55 @@
       list-style-type:none;
       flex: 1;
       background: $black;
-      a{
+
+    }
+  }
+
+  a{
+    padding: 15px;
+    text-decoration: none;
+    color: $gray;
+    transition: all 300ms ease;
+    -webkit-transition: all 300ms ease;
+    -moz-transition: all 300ms ease;
+    &:hover{
+      color:$white;
+    }
+  }
+  .submenu{
+
+
+    list-style-type: none;
+
+    //flex-direction: column;
+    transition: all 300ms ease;
+    -webkit-transition: all 300ms ease;
+    -moz-transition: all 300ms ease;
+    //overflow: hidden;
+    &:hover{
+      //overflow: auto;
+    }
+    &:hover .submenu-list{
+      margin-top:49px;
+      z-index: 0;
+
+    }
+    .submenu-list{
+     // display: flex;
+      flex-direction: column;
+      background: $black;
+      //position: absolute;
+      width: inherit !important;
+     // z-index: -1;
+      margin-top: 0;
+      transition: all 300ms ease;
+      -webkit-transition: all 300ms ease;
+      -moz-transition: all 300ms ease;
+      li{
+        list-style-type: none;
         padding: 15px;
-        text-decoration: none;
-        color: $white;
       }
     }
   }
+
 }

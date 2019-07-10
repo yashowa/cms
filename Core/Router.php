@@ -61,14 +61,13 @@ Class Router
         $adminNav = array();
 
         foreach($menus as $k => $menu){
+
+            $adminNav[$k]=$menu;
             foreach($submenus as $submenu){
 
                 if($submenu->submenu==$menu->id){
-                    $adminNav['subnav'][] =$submenu;
-
+                    $adminNav[$k]->subnav[] =$submenu;
                 }
-                $adminNav[]=$menu;
-
             }
         }
         return $adminNav;
