@@ -2,13 +2,12 @@
 /**
  * Created by PhpStorm.
  * User: jnicolas
- * Date: 08/07/19
- * Time: 12:43
+ * Date: 11/07/19
+ * Time: 15:39
  */
 
-class AdminSettingsController extends BaseController
+class AdminAddonsController extends BaseController
 {
-
     public function index(){
 
         $parsedQueryString=explode('/',$this->_querystring);
@@ -21,10 +20,7 @@ class AdminSettingsController extends BaseController
             'routes'=>$this->getSortedAdminRoutes(),
             'content'=>isset($pageDatas->content)?$pageDatas->content:"",
         );
-
-        $this->render('admin/settings.php',$params);
-
-
+        $this->render('admin/addons.php',$params);
 
     }
     public function getPageInfosFromAlias($alias){
@@ -36,5 +32,4 @@ class AdminSettingsController extends BaseController
             continue;
         }
     }
-
 }

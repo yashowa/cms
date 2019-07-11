@@ -7,7 +7,7 @@ class PageController extends BaseController
     $pageDatas = $this->getPageInfosFromAlias($alias);
     $params=array(
       'page_name'=>"$pageDatas->name",
-      'routes'=>$this->getRoutes(),
+        'routes'=>$this->getSortedAdminRoutes(),
       'content'=>$pageDatas->content
     );
     $this->render('page.php',$params);

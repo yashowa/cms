@@ -2,16 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="703cae47-27d4-474d-8685-9e8dd82c38bf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/controllers/AdminAddonsController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/admin/addons.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Router.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/AdminPageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/AdminPageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/AdminSettingsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/AdminSettingsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/AdminUserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/AdminUserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/BaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/BaseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/DashboardController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/PageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/PageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/PageNotFoundController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/PageNotFoundController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/params/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/params/config.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sass/admin/navigation.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/sass/admin/navigation.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/404.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/404.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/admin/global/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/global/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/home.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/dist/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,55 +30,14 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/PageController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="39" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/DashboardController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Core/Router.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="498">
-              <caret line="69" column="17" selection-start-line="69" selection-start-column="17" selection-end-line="69" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/admin/global/header.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="66" column="41" selection-start-line="66" selection-start-column="41" selection-end-line="66" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/PageNotFoundController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/sass/admin/navigation.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2">
-              <caret line="52" column="8" selection-start-line="52" selection-start-column="8" selection-end-line="52" selection-end-column="8" />
+            <state relative-caret-position="456">
+              <caret line="41" column="27" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
+              <folding>
+                <element signature="n#getRoutes#0;n#Router#0;n#!!top" />
+                <element signature="n#getSortedAdminRoutes#0;n#Router#0;n#!!top" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -79,17 +45,47 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/BaseController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
+            <state relative-caret-position="276">
+              <caret line="21" column="24" lean-forward="true" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
+              <folding>
+                <element signature="n#isValid#0;n#BaseController#0;n#!!top" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/admin/pages.php">
+        <entry file="file://$PROJECT_DIR$/views/admin/global/header.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="46" />
+            <state relative-caret-position="321">
+              <caret line="65" column="50" selection-start-line="65" selection-start-column="50" selection-end-line="65" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/AdminSettingsController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="13" column="16" lean-forward="true" selection-start-line="11" selection-end-line="37" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/AdminAddonsController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="32" column="9" lean-forward="true" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/admin/addons.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="37" lean-forward="true" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -98,7 +94,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>update(</find>
       <find>up-nav</find>
       <find>bindParam</find>
       <find>767</find>
@@ -128,6 +123,7 @@
       <find>btt</find>
       <find>logout</find>
       <find>page non</find>
+      <find>&lt;!-- /Block usmodule NAV --&gt;</find>
     </findStrings>
     <replaceStrings>
       <replace>bindValue</replace>
@@ -144,7 +140,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/views/admin/user-form.php" />
-        <option value="$PROJECT_DIR$/controllers/UserController.php" />
         <option value="$PROJECT_DIR$/dist/main.css" />
         <option value="$PROJECT_DIR$/src/sass/style.scss" />
         <option value="$PROJECT_DIR$/src/sass/_fonts.scss" />
@@ -157,10 +152,8 @@
         <option value="$PROJECT_DIR$/views/admin/users.php" />
         <option value="$PROJECT_DIR$/src/sass/admin/header.scss" />
         <option value="$PROJECT_DIR$/src/index.js" />
-        <option value="$PROJECT_DIR$/controllers/AdminUserController.php" />
         <option value="$PROJECT_DIR$/params/config.php" />
         <option value="$PROJECT_DIR$/src/js/features/DataFormat.js" />
-        <option value="$PROJECT_DIR$/controllers/PageController.php" />
         <option value="$PROJECT_DIR$/views/admin/global/debug.php" />
         <option value="$PROJECT_DIR$/views/admin/page-form.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
@@ -170,24 +163,32 @@
         <option value="$PROJECT_DIR$/controllers/admin/AdminSettingsController.php" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/controllers/AdminController.php" />
-        <option value="$PROJECT_DIR$/controllers/AdminSettingsController.php" />
         <option value="$PROJECT_DIR$/views/admin/settings.php" />
         <option value="$PROJECT_DIR$/src/sass/_global.scss" />
-        <option value="$PROJECT_DIR$/controllers/AdminPageController.php" />
         <option value="$PROJECT_DIR$/src/js/libs/tinymce.js" />
-        <option value="$PROJECT_DIR$/controllers/DashboardController.php" />
         <option value="$PROJECT_DIR$/Core/Router.php" />
-        <option value="$PROJECT_DIR$/controllers/BaseController.php" />
-        <option value="$PROJECT_DIR$/views/admin/global/header.php" />
         <option value="$PROJECT_DIR$/views/admin/home.php" />
         <option value="$PROJECT_DIR$/views/404.php" />
+        <option value="$PROJECT_DIR$/views/admin/global/header.php" />
         <option value="$PROJECT_DIR$/src/sass/admin/navigation.scss" />
+        <option value="$PROJECT_DIR$/controllers/BaseController.php" />
+        <option value="$PROJECT_DIR$/controllers/AdminPageController.php" />
+        <option value="$PROJECT_DIR$/controllers/AdminUserController.php" />
+        <option value="$PROJECT_DIR$/controllers/DashboardController.php" />
+        <option value="$PROJECT_DIR$/controllers/LoginController.php" />
+        <option value="$PROJECT_DIR$/controllers/PageController.php" />
+        <option value="$PROJECT_DIR$/controllers/PageNotFoundController.php" />
+        <option value="$PROJECT_DIR$/controllers/UserController.php" />
+        <option value="$PROJECT_DIR$/controllers/AdminSettingsController.php" />
+        <option value="$PROJECT_DIR$/controllers/AdminAddonsController.php" />
+        <option value="$PROJECT_DIR$/views/admin/addons.php" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="width" value="1910" />
-    <option name="height" value="1053" />
+    <option name="x" value="961" />
+    <option name="width" value="959" />
+    <option name="height" value="1052" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -204,18 +205,12 @@
             <path>
               <item name="games" type="b2602c69:ProjectViewProjectNode" />
               <item name="games" type="462c0819:PsiDirectoryNode" />
-              <item name="Core" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="games" type="b2602c69:ProjectViewProjectNode" />
               <item name="games" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="games" type="b2602c69:ProjectViewProjectNode" />
-              <item name="games" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="sass" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="games" type="b2602c69:ProjectViewProjectNode" />
@@ -226,6 +221,12 @@
               <item name="games" type="b2602c69:ProjectViewProjectNode" />
               <item name="games" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="games" type="b2602c69:ProjectViewProjectNode" />
+              <item name="games" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -247,6 +248,7 @@
       <recent name="$PROJECT_DIR$/src/sass/front" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/views/admin" />
       <recent name="$PROJECT_DIR$/src/sass/fonts" />
       <recent name="$PROJECT_DIR$/dist" />
     </key>
@@ -278,17 +280,18 @@
       <workItem from="1561361418278" duration="6749000" />
       <workItem from="1561380222993" duration="156000" />
       <workItem from="1561380627083" duration="25934000" />
-      <workItem from="1562572931803" duration="39418000" />
+      <workItem from="1562572931803" duration="50480000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="154925000" />
+    <option name="totallyTimeSpent" value="165987000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="1920" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49921754" visible="true" weight="0.19850586" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49921754" visible="true" weight="0.19850586" />
       <window_info id="npm" order="1" side_tool="true" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -302,7 +305,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053364" side_tool="true" weight="0.3116022" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.4994664" visible="true" weight="0.5834254" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4994664" visible="true" weight="0.22541437" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -314,16 +317,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/admin/user-form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/admin/form-login.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/admin/home.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -487,13 +480,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/admin/users.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="287">
@@ -511,13 +497,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/AdminSettingsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -542,13 +521,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/admin/settings.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="32" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sass/_global.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="335">
@@ -569,17 +541,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/AdminPageController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="136" selection-start-line="136" selection-end-line="136" />
-          <folding>
-            <element signature="n#index#0;n#AdminPageController#0;n#!!top" />
-            <element signature="n#getPageInfosFromAlias#0;n#AdminPageController#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/libs/tinymce.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
@@ -587,65 +548,6 @@
           <folding>
             <element signature="e#170#201#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/LoginController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="11" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/AdminUserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="24" column="15" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="15" />
-          <folding>
-            <element signature="e#658#3853#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/PageController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="39" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/DashboardController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/BaseController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Core/Router.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="498">
-          <caret line="69" column="17" selection-start-line="69" selection-start-column="17" selection-end-line="69" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/admin/global/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="66" column="41" selection-start-line="66" selection-start-column="41" selection-end-line="66" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/PageNotFoundController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -658,8 +560,119 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sass/admin/navigation.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2">
-          <caret line="52" column="8" selection-start-line="52" selection-start-column="8" selection-end-line="52" selection-end-column="8" />
+        <state relative-caret-position="413">
+          <caret line="69" column="23" selection-start-line="69" selection-start-column="23" selection-end-line="69" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/admin/settings.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="32" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/admin/global/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="65" column="50" selection-start-line="65" selection-start-column="50" selection-end-line="65" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/AdminPageController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" selection-start-line="24" selection-end-line="24" selection-end-column="48" />
+          <folding>
+            <element signature="n#getPageInfosFromAlias#0;n#AdminPageController#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/AdminUserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
+          <folding>
+            <element signature="e#658#3853#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/DashboardController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="10" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/LoginController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/PageNotFoundController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="48" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="52" selection-start-line="6" selection-start-column="52" selection-end-line="6" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/PageController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="48" selection-start-line="9" selection-start-column="48" selection-end-line="9" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/Router.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="41" column="27" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
+          <folding>
+            <element signature="n#getRoutes#0;n#Router#0;n#!!top" />
+            <element signature="n#getSortedAdminRoutes#0;n#Router#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/BaseController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="21" column="24" lean-forward="true" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
+          <folding>
+            <element signature="n#isValid#0;n#BaseController#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/AdminSettingsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="13" column="16" lean-forward="true" selection-start-line="11" selection-end-line="37" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/AdminAddonsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="32" column="9" lean-forward="true" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/admin/addons.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="37" lean-forward="true" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
         </state>
       </provider>
     </entry>

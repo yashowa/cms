@@ -10,7 +10,7 @@ class LoginController extends BaseController
 
     $params=array(
       'page_name'=>"Connexion",
-      'routes'=>$this->getRoutes()
+        'routes'=>$this->getSortedAdminRoutes(),
     );
     $this->render('login.php',$params);
   }

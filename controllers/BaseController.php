@@ -19,7 +19,11 @@ params : connexion PDO object to local //table
       return Router::getRoutes($this->_connexion);
   }
   public function  getAdminRoutes(){
-      return Router::getSortedAdminRoutes($this->_connexion);
+      return Router::getAdminRoutes($this->_connexion);
+  }
+
+  public function  getSortedAdminRoutes(){
+        return Router::getSortedAdminRoutes($this->_connexion);
   }
 
   public function __construct(){
@@ -47,12 +51,12 @@ setter page name from controller
 *
 */
   public function setPageName($name){
-    $this->$_page_name = $name;
+    $this->_page_name = $name;
   }
 
   /*getter page name  from controller*/
   public function getPageName(){
-    return $this->$_page_name;
+    return $this->_page_name;
   }
 
 
@@ -95,5 +99,8 @@ setter page name from controller
       return false;
 
   }
+
+  /*get page info from alias*/
+
 
 }

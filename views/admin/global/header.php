@@ -63,7 +63,7 @@
 
         <?php if(property_exists($route,'subnav')):?>
             <li class="submenu">
-                <?php echo $route->name; ?>
+                <a><?php echo $route->name; ?></a>
                 <ul class="submenu-list">
                     <?php foreach($route->subnav as $subroute): ?>
                     <li><a href="/admin/<?php echo $subroute->alias; ?>"><?php echo $subroute->name; ?></a></li>

@@ -4,7 +4,7 @@ class UserController extends BaseController
     public function index()  {
         $params = array(
             'page_name' => "Accueil",
-            'routes' => $this->getRoutes()
+            'routes'=>$this->getSortedAdminRoutes(),
         );
         $this->render('home.php', $params);
     }

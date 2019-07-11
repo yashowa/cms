@@ -7,8 +7,8 @@ class DashboardController extends BaseController
     $alias =explode('/',$this->_querystring)[2];
     $pageDatas = $this->getPageInfosFromAlias($alias);
     $params=array(
-      'page_name'=>"Espace d'administration",
-      'routes'=>$this->getAdminRoutes()
+        'page_name'=>"Espace d'administration",
+        'routes'=>$this->getSortedAdminRoutes(),
     );
       $this->render('admin/home.php',$params);
   }

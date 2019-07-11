@@ -22,7 +22,7 @@ class AdminUserController extends BaseController{
 
       $params=array(
         'page_name'=>$pageDatas->name,
-        'routes'=>$this->getAdminRoutes(),
+        'routes'=>$this->getSortedAdminRoutes(),
         'content'=>isset($pageDatas->content)?$pageDatas->content:"",
         'users'=>UserController::getList()
       );
