@@ -2,11 +2,11 @@
 /**
  * Created by PhpStorm.
  * User: jnicolas
- * Date: 11/07/19
- * Time: 15:39
+ * Date: 12/07/19
+ * Time: 11:09
  */
 
-class AdminAddonsController extends BaseController
+class AdminTemplateController extends BaseController
 {
     public function index(){
 
@@ -19,9 +19,13 @@ class AdminAddonsController extends BaseController
             'page_name'=>$pageDatas->name,
             'routes'=>$this->getSortedAdminRoutes(),
             'content'=>isset($pageDatas->content)?$pageDatas->content:"",
-            'addons'=>$this->getAddons()
+            'templates'=>$this->getTemplates()
         );
-        $this->render('admin/addons.php',$params);
+
+        $this->getTemplates();
+        $this->render('admin/templates.php',$params);
+
+
 
     }
     public function getPageInfosFromAlias($alias){
@@ -33,29 +37,25 @@ class AdminAddonsController extends BaseController
             continue;
         }
     }
+    public function getTemplates(){
 
-
-    public function getAddons(){
-
-        $tmpDirectory = ROOT.'/addons';
+        $tmpDirectory = ROOT.'/templates';
         echo $tmpDirectory;
 
 
         $modules =array();
 
         if ($handle = opendir($tmpDirectory)) {
+            echo "Gestionnaire du dossier : $handle\n";
+            echo "Entrées :\n";
+
             // Ceci est la façon correcte de traverser un dossier.
             while (false !== ($entry = readdir($handle))) {
-                if( $entry!='.' && $entry!='..'){
-                    $modules[]=$entry;
-                }
+                $modules[]=$entry;
             }
 
             closedir($handle);
         }
-
-        $req = "SELECT * FROM deb_addons";
-
         return $modules;
     }
 
