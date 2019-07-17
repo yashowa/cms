@@ -42,7 +42,6 @@ class AdminTemplateController extends BaseController
         $tmpDirectory = ROOT.'/templates';
         echo $tmpDirectory;
 
-
         $modules =array();
 
         if ($handle = opendir($tmpDirectory)) {
@@ -57,6 +56,42 @@ class AdminTemplateController extends BaseController
             closedir($handle);
         }
         return $modules;
+    }
+
+    /*method load
+     * load template from database and ftp*/
+    public static function load(){
+
+        $query = "SELECT * FROM deb_templates WHERE is_active=:active ";
+        $req = Connection::getInstance()->prepare($query);
+        $req->bindValue(':active',1,PDO::PARAM_INT);
+        $req->execute();
+        $template = $req->fetch();
+        $rootPath = ROOT.'/templates/'.$template['rootpath'];
+
+        $templateFileList = array('header','footer','page');
+
+        foreach ($templateFileList as $file){
+
+            if(!file_exists($rootPath.'//'.$file)){
+                die($rootPath.'//'.$file ." manquant")
+            }
+        }
+        if ($handle = opendir($rootPath)) {
+            echo "Gestionnaire du dossier : $handle\n";
+            echo "Entrées :\n";
+
+            // Ceci est la façon correcte de traverser un dossier.
+            while (false !== ($entry = readdir($handle))) {
+                $modules[]=$entry;
+            }
+
+            closedir($handle);
+        }
+
+        echo $rootPath;
+        exit;
+
     }
 
 }

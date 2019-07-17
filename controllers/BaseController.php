@@ -41,9 +41,20 @@ params : connexion PDO object to local //table
   * params: string template name and params
   */
   public function render($tpl, $params=null){
+      //va cherche le template actif
+
+      AdminTemplateController::load();
     //echo 'render du basecontroller incluera'.ROOT."/views/".$tpl;
     include('views/'.$tpl);
   }
+
+
+
+    public function renderAdmin($tpl, $params=null){
+        //va cherche le template actif
+        //echo 'render du basecontroller incluera'.ROOT."/views/".$tpl;
+        include('views/'.$tpl);
+    }
 
 /*
 setter page name from controller
