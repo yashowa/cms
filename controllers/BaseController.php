@@ -42,13 +42,17 @@ params : connexion PDO object to local //table
   */
   public function render($tpl, $params=null){
       //va cherche le template actif
+    $template = AdminTemplateController::load();
+    include($template['rootpath'].'/'.$tpl);
 
-      AdminTemplateController::load();
-    //echo 'render du basecontroller incluera'.ROOT."/views/".$tpl;
-    include('views/'.$tpl);
   }
 
 
+    /*
+    *   method renderAdmin
+    * role:  get the template file to view the page in the backoffice
+    * params: string template name and params
+    */
 
     public function renderAdmin($tpl, $params=null){
         //va cherche le template actif

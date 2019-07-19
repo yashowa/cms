@@ -69,28 +69,22 @@ class AdminTemplateController extends BaseController
         $template = $req->fetch();
         $rootPath = ROOT.'/templates/'.$template['rootpath'];
 
-        $templateFileList = array('header','footer','page');
+
+        // list of file required
+        $templateFileList = array('header.php','footer.php','page.php');
 
         foreach ($templateFileList as $file){
-
             if(!file_exists($rootPath.'//'.$file)){
-                die($rootPath.'//'.$file ." manquant")
+                die($rootPath.'//'.$file ." manquant");
             }
         }
-        if ($handle = opendir($rootPath)) {
-            echo "Gestionnaire du dossier : $handle\n";
-            echo "Entrées :\n";
 
-            // Ceci est la façon correcte de traverser un dossier.
-            while (false !== ($entry = readdir($handle))) {
-                $modules[]=$entry;
-            }
+        return array(
+            'rootpath'  =>  $rootPath,
+            'datas'     =>  $template
+        );
 
-            closedir($handle);
-        }
 
-        echo $rootPath;
-        exit;
 
     }
 
